@@ -10882,3 +10882,7 @@ a.text-dark:focus {
   }
 }
 
+html {
+  list-style: none;
+}
+

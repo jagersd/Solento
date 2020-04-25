@@ -15,6 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->integer('gold_amount');
             $table->integer('victory_points');
             $table->timestamps();
