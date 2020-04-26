@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gold_amount', 'victory_points'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -39,11 +39,21 @@ class User extends Authenticatable
     ];
 
     /**
+     * 
      * Get the stock record associated with the user.
      */
     public function stock()
     {
         return $this->hasOne('App\Stock','user_id');
+    }
+
+    /**
+     * 
+     * Get the userrace record associated with the user.
+     */
+    public function user_race_combination()
+    {
+        return $this->hasOne('App\User_race','user_id');
     }
     
 }
