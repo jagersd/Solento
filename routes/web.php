@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/test', 'User_racesController@index');
+Route::post('/test','User_racesController@create');

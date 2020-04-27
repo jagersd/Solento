@@ -13,8 +13,12 @@ class CreateBaseUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('base-units', function (Blueprint $table) {
+        Schema::create('base_units', function (Blueprint $table) {
             $table->id();
+            $table->integer('race_id');
+            $table->string('name');
+            $table->integer('cost');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateBaseUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('base-units');
+        Schema::dropIfExists('base_units');
     }
 }

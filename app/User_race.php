@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User_race extends Model
 {
-    protected $table = 'user_race';
+    protected $table = 'user_races';
     /**
      * Get the user / race combination (hopefully).
      */
