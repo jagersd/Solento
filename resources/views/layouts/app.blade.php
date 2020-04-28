@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -40,7 +41,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
@@ -56,18 +57,21 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <ul style="list-style: none;">
-                                        <li>
+                                        <li class="nav-item">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
                                         </li>
-                                        <li>
+                                        <li class="nav-item">
                                             <p class="dropdown-item">Gold amount: {{ auth::user()->stock->gold_amount}}</p>
                                         </li>
-                                        <li>
+                                        <li class="nav-item">
                                             <p class="dropdown-item">Victory points: {{ auth::user()->stock->victory_points}}</p>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" href="{{ url('/profile') }}">View Profile</a>
                                         </li>
                                     </ul>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

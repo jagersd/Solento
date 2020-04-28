@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', 'User_racesController@index');
-Route::post('/test','User_racesController@create');
+Route::get('/profile', 'ProfilesController@index');
+Route::post('/profile', 'ProfilesController@reset_account');
+
+Route::get('/home', 'User_racesController@index');
+Route::post('/home','User_racesController@create');

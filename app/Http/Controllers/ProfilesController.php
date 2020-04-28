@@ -8,8 +8,10 @@ use App\User;
 use App\Race;
 use App\User_race;
 use Auth;
+use App\Stock;
 
-class User_racesController extends Controller
+
+class ProfilesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +25,8 @@ class User_racesController extends Controller
         ->where('user_races.user_id','=', Auth::id())
         ->get('races.name');
 
-        $allraces= Race::all();
-
-        return view('home', [
+        return view('profile', [
             'userraces'=>$userraces,
-            'allraces'=>$allraces
         ]);
     }
 
@@ -36,12 +35,13 @@ class User_racesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(request $data)
+    public function reset_account()
     {
-            User_race::create([
-            'user_id'=>$data['user_id'],
-            'race_id'=>$data['race_choice'],
-        ]);
+        Stock::where('user_id',auth::user()->id)
+        ->update(['gold_amount'=>500]);
+        
+        User_race::where('user_id',auth::user()->id)
+        ->delete();
 
         return redirect()->back();
     }
