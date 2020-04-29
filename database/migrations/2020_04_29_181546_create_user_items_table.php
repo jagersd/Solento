@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsTable extends Migration
+class CreateUserItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('user_items', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name');
-            $table->integer('item_cost');
-            $table->integer('item_sell_price');
-            $table->text('description');
-            $table->integer('in_store')->default(1);
+            $table->integer('user_id');
+            $table->integer('item_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('user_items');
     }
 }

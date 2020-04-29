@@ -30,10 +30,20 @@
                     </form>
 
                     @endif
-
                 </div>
             </div>
         </div>
     </div>
+</div>
+<br><br>
+<div class="d-flex justify-content-center">
+
+    <div class="links">
+        <a href="/unit_store">Unit Catelogue |</a>
+        <a href="/unit_store">| Item Catelogue |</a>
+        <a href="/unit_store">| Check outfit |</a>
+        <a href="/unit_store">| Into Battle</a>
+    </div>
+    
 </div>
 @endsection

@@ -18,11 +18,30 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+/*
+|
+|After Login routes
+|
+*/
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'User_racesController@index');
+Route::post('/home','User_racesController@create');
+
+
+
+/*
+|
+|View your profile
+|
+*/
 
 Route::get('/profile', 'ProfilesController@index');
 Route::post('/profile', 'ProfilesController@reset_account');
 
-Route::get('/home', 'User_racesController@index');
-Route::post('/home','User_racesController@create');
+/*
+|
+|View your unit store
+|
+*/
+
+Route::get('/unit_store', 'Unit_storeController@index');

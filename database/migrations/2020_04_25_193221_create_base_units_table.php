@@ -17,8 +17,14 @@ class CreateBaseUnitsTable extends Migration
             $table->id();
             $table->integer('race_id');
             $table->string('name');
+            $table->integer('hp');
+            $table->integer('strength');
+            $table->integer('armor');
+            $table->integer('intellect');
+            $table->integer('speed');
             $table->integer('cost');
             $table->text('description');
+            $table->integer('in_store')->default(1);
             $table->timestamps();
         });
     }

@@ -16,5 +16,10 @@ class Race extends Model
         'name','description'
     ];
 
+    public function base_units()
+    {
+        return $this->hasMany(Base_unit::class,'race_id');
+    }
+
 
 }
