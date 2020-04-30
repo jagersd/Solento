@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class outfit extends Model
 {
     //
+    protected $table = 'outfits';
 }

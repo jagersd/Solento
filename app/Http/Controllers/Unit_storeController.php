@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Race;
 use App\Base_unit;
+use App\Stock;
+use Auth;
 
 class Unit_storeController extends Controller
 {
@@ -16,8 +18,8 @@ class Unit_storeController extends Controller
     public function index()
     {   
         $allraces = Race::all();
-
-        return view('unit_store', compact('allraces'));
+        $gold_amount = Stock::where('user_id',auth::user()->id)->first('gold_amount');
+        return view('unit_store', compact('allraces','gold_amount'));
     }
 
     /**

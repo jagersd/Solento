@@ -43,6 +43,9 @@ class ProfilesController extends Controller
         User_race::where('user_id',auth::user()->id)
         ->delete();
 
+        outfit::where('user_id',auth::user()->id)
+        ->delete();
+
         return redirect()->back();
     }
 
