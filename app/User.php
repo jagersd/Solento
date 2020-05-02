@@ -55,6 +55,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\User_race','user_id');
     }
+
+    /**
+     * 
+     * Get the outfit record associated with the user.
+     */
+    public function outfit()
+    {
+        return $this->hasMany(outfit::class,'user_id');
+    }
     
 }
 

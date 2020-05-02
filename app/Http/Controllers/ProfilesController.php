@@ -9,6 +9,7 @@ use App\Race;
 use App\User_race;
 use Auth;
 use App\Stock;
+use App\outfit;
 
 
 class ProfilesController extends Controller
