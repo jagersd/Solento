@@ -41,7 +41,7 @@
     <div class="links">
         <a href="/unit_store">Unit Catelogue |</a>
         <a href="/unit_store">| Item Catelogue |</a>
-        <a href="/unit_store">| Check outfit |</a>
+        <a href="/outfit">| Check outfit |</a>
         <a href="/unit_store">| Into Battle</a>
     </div>
     

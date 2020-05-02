@@ -42,23 +42,28 @@ class Unit_storeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function buy_unit(Request $request)
-    {
+    {   //fetch required elements
+
         $data = $request->all();
+        $purchaseUnit = Base_unit::where('id',$data['unit_id'])->first();
 
-        outfit::create([
-            'user_id'=>$data['user_id'],
-            'unit_id'=>$data['unit_id'],
-            'current_hp'=>$data['unit_hp']
-        ]);
+        $current_stock=Stock::where('user_id',auth::user()->id)->first('gold_amount');
+        $new_gold_amount = $current_stock->gold_amount - $purchaseUnit->cost;
         
-        $current_stock=Stock::where('user_id',$data['user_id'])->first('gold_amount');
-        $new_gold_amount = $current_stock->gold_amount - $data['unit_price'];
+        //execute purchase after if statement for security
+            if($purchaseUnit->cost <= $current_stock->gold_amount){
 
-        Stock::where('user_id',$data['user_id'])
-        ->update(array('gold_amount'=>$new_gold_amount));
-
+            outfit::create([
+                'user_id'=>auth::user()->id,
+                'unit_id'=>$data['unit_id'],
+                'current_hp'=>$purchaseUnit->hp,
+                'name'=>$purchaseUnit->name
+            ]);
+            
+            Stock::where('user_id',auth::user()->id)
+            ->update(array('gold_amount'=>$new_gold_amount));    
+        }
         return redirect()->back();
-        
     }
 
     /**

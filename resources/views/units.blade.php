@@ -24,7 +24,7 @@
                 <div class="card-footer">Cost: {{$unit->cost}}<br>
                     Gold to spend: {{$gold_amount->gold_amount}}
                     <br>
-                    @if($unit->cost < $gold_amount->gold_amount)
+                    @if($unit->cost <= $gold_amount->gold_amount)
                     <button class="btn btn-dark" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Add unit to your roster</button>
                     @endif
                     <button class="btn btn-dark" onclick="location.href='/unit_store'" type="button">back to unit overview</button>
@@ -50,9 +50,6 @@
                 <form method="POST" action="{{ action('Unit_storeController@buy_unit') }}">
                 {{ csrf_field() }}
                 <input type="hidden" id="unit_id" name="unit_id" value="{{$unit->id}}">
-                <input type="hidden" id="user_id" name="user_id" value="{{auth::user()->id}}">
-                <input type="hidden" id="unit_price" name="unit_price" value="{{$unit->cost}}">
-                <input type="hidden" id="unit_hp" name="unit_hp" value="{{$unit->hp}}">
                 <button class="btn btn-dark" type="submit">Confirm</button>
                 <button class="btn btn-dark" data-toggle="modal" data-dismiss="modal" >Return</button>
                 </form>

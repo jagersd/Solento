@@ -40,7 +40,7 @@ Route::post('/profile', 'ProfilesController@reset_account');
 
 /*
 |
-|View your unit store
+|Unit store routes
 |
 */
 
@@ -48,3 +48,11 @@ Route::get('/unit_store', 'Unit_storeController@index');
 Route::get('/units/{unit_id}', 'Unit_storeController@unit_index');
 
 Route::post('/unit_store', 'Unit_storeController@buy_unit');
+
+/*
+|
+|Outfit routes
+|
+*/
+
+Route::get('/outfit','OutfitsController@index');

@@ -15,4 +15,10 @@ class outfit extends Model
         return $this->belongsTo(User::class,'id','user_id');
     }
 
+    public function base_details()
+    {
+        return $this->hasOne(Base_unit::class,'id','unit_id');
+    }
+
+
 }
