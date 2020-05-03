@@ -16,8 +16,10 @@ class CreateItemStatsTable extends Migration
         Schema::create('item_stats', function (Blueprint $table) {
             $table->id();
             $table->integer('item_id');
-            $table->string('stat_type');
-            $table->integer('stat_value');
+            $table->string('item_stat_name');
+            $table->text('item_stat_description');
+            $table->text('item_dev_description')->nullable();
+            $table->integer('stat_value')->nullable();
             $table->timestamps();
         });
     }

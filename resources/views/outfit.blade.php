@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a href="/home"><--- Go Back</a>
 <div class="container">
     @foreach ($units as $unit)
     <div class="card">

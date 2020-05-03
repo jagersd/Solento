@@ -37,19 +37,18 @@ class Unit_storeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Purchasing units execution.
      *
      * @return \Illuminate\Http\Response
      */
     public function buy_unit(Request $request)
     {   //fetch required elements
-
         $data = $request->all();
         $purchaseUnit = Base_unit::where('id',$data['unit_id'])->first();
 
         $current_stock=Stock::where('user_id',auth::user()->id)->first('gold_amount');
         $new_gold_amount = $current_stock->gold_amount - $purchaseUnit->cost;
-        
+
         //execute purchase after if statement for security
             if($purchaseUnit->cost <= $current_stock->gold_amount){
 
@@ -57,7 +56,9 @@ class Unit_storeController extends Controller
                 'user_id'=>auth::user()->id,
                 'unit_id'=>$data['unit_id'],
                 'current_hp'=>$purchaseUnit->hp,
-                'name'=>$purchaseUnit->name
+                'name'=>$purchaseUnit->name,
+                'position'=>$purchaseUnit->preferred_position,
+                'outfit_weight'=>$purchaseUnit->outfit_weight
             ]);
             
             Stock::where('user_id',auth::user()->id)

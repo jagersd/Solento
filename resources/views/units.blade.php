@@ -17,10 +17,18 @@
                     <li>Speed:{{$unit->speed}}</li>
                 </ul>
                 <hr>
-                <p>Special ablities:</p>
-                <ul>
-                    <li>Abilities yet to be defined</li>
-                </ul>
+                <p>Special traits:</p>
+                @if(count($unit->abilities)>0)
+                    
+                        @foreach ($unit->abilities as $ability)
+                        <u>{{$ability['stat_name']}}:</u>
+                        <p>{{$ability['stat_description']}}</p>
+                        @endforeach
+                @else
+                
+                <p>This unit does not have special traits. What you see is what you get, and it's good.</p>
+                    
+                @endif
                 <div class="card-footer">Cost: {{$unit->cost}}<br>
                     Gold to spend: {{$gold_amount->gold_amount}}
                     <br>

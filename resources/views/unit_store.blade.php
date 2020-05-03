@@ -12,9 +12,9 @@
                         @foreach ($allraces as $race)
                             <h4>{{$race->name}}</h4><hr>
                                 <div class="list-group">
-                                    @foreach ($race->base_units as $unit)
+                                    @foreach ($race->base_units->sortBy('cost') as $unit)
                                     <a href="units/{{$unit->id}}" class="list-group-item list-group-item-action list-group-item-dark ">
-                                        {{$unit->name}} {{$unit->description}} {{$unit->cost}}
+                                        {{$unit->name}} {{$unit->cost}}
                                     </a>   
                                     @endforeach
                                 </div>

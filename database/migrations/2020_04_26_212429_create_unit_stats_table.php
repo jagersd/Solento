@@ -16,8 +16,10 @@ class CreateUnitStatsTable extends Migration
         Schema::create('unit_stats', function (Blueprint $table) {
             $table->id();
             $table->integer('unit_id');
-            $table->string('stat_type');
-            $table->integer('stat_value');
+            $table->string('stat_name');
+            $table->text('stat_description');
+            $table->text('dev_description');
+            $table->integer('stat_value')->nullable();
             $table->timestamps();
         });
     }

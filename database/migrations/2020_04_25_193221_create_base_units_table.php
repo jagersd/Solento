@@ -21,13 +21,16 @@ class CreateBaseUnitsTable extends Migration
             $table->integer('strength');
             $table->integer('armor');
             $table->integer('intellect');
+            $table->integer('magic_defence');
             $table->integer('speed');
             $table->integer('cost');
             $table->text('description');
+            $table->integer('preferred_position')->nullable();
+            $table->integer('outfit_weight')->default(1);
             $table->integer('in_store')->default(1);
-            $table->string('art_1');
-            $table->string('art_2');
-            $table->string('art_3');
+            $table->string('art_1')->nullable();
+            $table->string('art_2')->nullable();
+            $table->string('art_3')->nullable();
             $table->timestamps();
         });
     }

@@ -19,4 +19,9 @@ class Base_unit extends Model
         return $this->belongsTo(outfit::class,'id','unit_id');
     }
 
+    public function abilities()
+    {
+        return $this->hasMany(Unit_stat::class,'unit_id','id');
+    }
+
 }
