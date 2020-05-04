@@ -20,5 +20,10 @@ class outfit extends Model
         return $this->hasOne(Base_unit::class,'id','unit_id');
     }
 
+    public function formation()
+    {
+        return $this->hasOne(Formation::class,'id','position');
+    }
+
 
 }

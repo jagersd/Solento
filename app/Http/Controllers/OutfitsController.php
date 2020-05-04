@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Base_unit;
 use Auth;
@@ -19,6 +20,18 @@ class OutfitsController extends Controller
         $units = outfit::where('user_id', auth::user()->id)->get();
 
         return view('outfit', compact('units'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detailindex($id)
+    {
+        $data = Crypt::decrypt($id);
+
+        return view('outfit/details', compact('id'));
     }
 
     /**
@@ -68,12 +81,15 @@ class OutfitsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function namechange(Request $request)
     {
-        //
+        outfit::where('id',$request->outfit_id)
+            ->update(array('name'=>$request->outfit_name));
+
+        return redirect()->action('OutfitsController@index');
     }
 
     /**
