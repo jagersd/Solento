@@ -17,6 +17,7 @@ class CreateUserItemsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('item_id');
+            $table->integer('assigned')->default(0);
             $table->timestamps();
         });
     }

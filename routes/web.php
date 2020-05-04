@@ -49,6 +49,8 @@ Route::post('/unit_store', 'Unit_storeController@buy_unit');
 Route::get('/units/{unit_id}', 'Unit_storeController@unit_index');
 
 Route::get('/item_store', 'Item_storeController@index');
+Route::post('/item_store', 'Item_storeController@buy_item');
+Route::get('/items/{item_id}', 'Item_storeController@item_index');
 
 /*
 |

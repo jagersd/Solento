@@ -23,7 +23,7 @@ class Unit_storeController extends Controller
         return view('unit_store', compact('allraces','gold_amount'));
     }
 
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,7 +50,7 @@ class Unit_storeController extends Controller
         $new_gold_amount = $current_stock->gold_amount - $purchaseUnit->cost;
 
         //execute purchase after if statement for security
-            if($purchaseUnit->cost <= $current_stock->gold_amount){
+        if($purchaseUnit->cost <= $current_stock->gold_amount){
 
             outfit::create([
                 'user_id'=>auth::user()->id,

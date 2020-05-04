@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 Use Auth;
 Use App\Stock;
 Use App\Item;
+USE App\user_item;
 
 class Item_storeController extends Controller
 {
@@ -23,13 +24,45 @@ class Item_storeController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function item_index($id)
+    {
+        Item::findOrFail($id);
+        $item=Item::where('id',$id)->first();
+        $gold_amount = Stock::where('user_id',auth::user()->id)->first('gold_amount');   
+
+        return view('items', compact('id','item','gold_amount'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function buy_item(Request $request)
     {
-        //
+        //fetch required elements
+        $data = $request->all();
+        $purchaseItem = Item::where('id',$data['item_id'])->first();
+
+        $current_stock=Stock::where('user_id',auth::user()->id)->first('gold_amount');
+        $new_gold_amount = $current_stock->gold_amount - $purchaseItem->item_cost;
+
+        //execute purchase after if statement for security
+        if($purchaseItem->item_cost <= $current_stock->gold_amount){
+
+            user_item::create([
+                'user_id'=>auth::user()->id,
+                'item_id'=>$data['item_id'],
+            ]);
+            
+            Stock::where('user_id',auth::user()->id)
+            ->update(array('gold_amount'=>$new_gold_amount));    
+        }
+        return redirect()->back();
     }
 
     /**

@@ -10,6 +10,7 @@ use App\User_race;
 use Auth;
 use App\Stock;
 use App\outfit;
+use App\user_item;
 
 
 class ProfilesController extends Controller
@@ -45,6 +46,9 @@ class ProfilesController extends Controller
         ->delete();
 
         outfit::where('user_id',auth::user()->id)
+        ->delete();
+
+        user_item::where('user_id',auth::user()->id)
         ->delete();
 
         return redirect()->back();
