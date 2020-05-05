@@ -9,6 +9,7 @@ use App\Stock;
 use Auth;
 use App\outfit;
 
+
 class Unit_storeController extends Controller
 {
     /**
