@@ -58,11 +58,20 @@ class User extends Authenticatable
 
     /**
      * 
-     * Get the outfit record associated with the user.
+     * Get the outfit records associated with the user.
      */
     public function outfit()
     {
         return $this->hasMany(outfit::class,'user_id');
+    }
+
+        /**
+     * 
+     * Get the user_item records associated with the user.
+     */
+    public function user_item()
+    {
+        return $this->hasMany(user_item::class,'user_id');
     }
     
 }

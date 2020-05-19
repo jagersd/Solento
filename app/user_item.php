@@ -11,4 +11,14 @@ class user_item extends Model
      * Add special abilities to a unit
      */
     protected $guarded = array();
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id','user_id');
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class,'item_id','id');
+    }
 }

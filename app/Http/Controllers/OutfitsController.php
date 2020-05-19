@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Base_unit;
 use Auth;
 use App\outfit;
+use App\user_item; 
 
 class OutfitsController extends Controller
 {
@@ -30,8 +31,13 @@ class OutfitsController extends Controller
     public function detailindex($id)
     {
         $data = Crypt::decrypt($id);
+        $unit_stats = outfit::where('id', $data)->first();
+        $user_items = user_item::where('user_id', auth::user()->id)->get();
 
-        return view('outfit/details', compact('id'));
+        
+
+        
+        return view('outfit/details', compact('id', 'unit_stats','user_items'));
     }
 
     /**

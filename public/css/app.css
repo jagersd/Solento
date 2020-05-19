@@ -10929,3 +10929,9 @@ a.text-dark:focus {
   }
 }
 
+/* Unit outfit details */
+
+#artwork {
+  border: 1px solid grey;
+}
+

@@ -55,7 +55,7 @@
 
 <div class="welcome-section">
     <div class="row">
-        <div class="col-2" data-aos="fade-up"></div>
+        <div class="col-2 mobile-center" data-aos="fade-up"></div>
             <div class="col-8">
                 <h1>*Welcome to project Solento*</h1>
                 <p>In this world of wonderlust and warlords, you get the opportunity to show your prowess as a tactician by leading army you hand picked for purpose.</p>
@@ -73,28 +73,28 @@
 
 <div class="gameloop welcome-section container-fluid">
     <div class="row flex-column flex-md-row">
-        <div class="col-2">
+        <div class="col-2 responsive">
             <h4>1. Sign up</h4>
             <p>When signed up, requested to select a race. This will not limit you to selecting units from other origins but will have some other implications.</p>
             <p>You will also receive some currency to spash on units, items or other things.</p>
         </div>
         
-        <div class="col-2">
+        <div class="col-2 responsive">
             <h4>2. Gather your stuff</h4>
             <p>You can spend hours going through the multitude of units and items on offer and see how you can collect a well rounded or very specialized group of units</p>
         </div>
-        <div class="col-2">
+        <div class="col-2 responsive">
             <h4>3. Tweak,tinker and gear up</h4>
             <p>Here you will be able to set your outfits formation, assign the correct piece of gear for your plan an choose which units to send out.</p>
         </div>
-        <div class="col-2">
+        <div class="col-2 responsive">
             <h4>4. Battle</h4>
             <p>The battle engine will match you up against another player and work out which strategy has worked out best in this instance.
                 You will be updated along the way of course. 
             </p>
         </div>
-        <div class="col-1"><img src="{{URL::asset('/images/homepage/axe1.png')}}" height="200"></div>
-        <div class="col-2">
+        <div class="col-1 responsive"><img src="{{URL::asset('/images/homepage/axe1.png')}}" height="200"></div>
+        <div class="col-2 responsive">
             <h4>5. Spoils of victory or taste bitter defeat</h4>
             <p>The winner can get rewards in form of curreny, items or even units. The losing end will receive al required information to see wtf happened.</p>
         </div>
@@ -109,20 +109,20 @@
 <div class="roadmap welcome-section container-flex">
     <div class="row flex-column flex-md-row">
         <div class="col-12">
-            <h1>Roadmap:</h1><br><br>
+            <h1>Roadmap</h1>
         </div>
     </div>
     <div class="row flex-column flex-md-row">
         <div class="col-1"></div>
-        <div class="col-5">
+        <div class="col-5 responsive">
             <p>This project started out of interest in an attempt to get familiar with whatever is needed in order to run a web application. It is in far too early of a stage to list the things still need doing (a small warcraft 3 refence for your there :D),
                 but there is a lot of stuff I want to get in here which do not necessarily revolve around web tech. If you have a real interest and passion for the fantasy genre, please feel free to let me know that you want to contribute.
                 For now, there is not even a front-end past this part except for that is required to test back-end functionality.  
             </p>
         </div>
-        <div class="col-5">
+        <div class="col-5 responsive" >
             <p>Interested to participate? Your expertise is very much appreciated on the following fronts:</p>
-            <ul style="list-style:none">
+            <ul style="list-style:none; padding:0;">
                 <li>Fantasy story writing:</li>
                 <i>In order to make a browser based game interesting, I'd like to have it backed up with a good story</i>
                 <li>Art-work:</li>
@@ -138,20 +138,20 @@
 <div class="welcome-section end">
     <div class="row flex-column flex-md-row">
         <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-8 responsive">
             <h4>Assets used:</h4>
-            <p>The art work for this front page is gathered from <a href="https://www.artstation.com/"></a>artstation.com without prior request to the artists. When present, the watermarks have been left in as well as the creators name as part of the file name.</p>
+            <p>The art work for this front page is gathered from <a href="https://www.artstation.com/">artstation.com</a> without prior request to the artists. When present, the watermarks have been left in as well as the creators name as part of the file name.</p>
             <p>Going forward, it would be great to have people contributing art directly. Their names will be mentioned whenever the work is displayed.</p>
             <br>
             <h4>For those interested:</h4>
-            <p>Tech stack</p>
-            <ul style="list-style: none">Front-end:
+            <p>Tech stack:</p>
+            <ul style="list-style:none; padding:0;">Front-end:
                 <li>Laravel's Blade template</li>
                 <li>Bootstrap</li>
                 <li>AOS library</li>
                 <li>VUE</li>
             </ul>
-            <ul style="list-style: none">Back-end:
+            <ul style="list-style:none; padding:0;">Back-end:
                 <li>Laravel</li>
                 <li>MySQL</li>
             </ul>
@@ -195,11 +195,12 @@
         font-family: 'Dosis', sans-serif;
         font-size: 17px;
         width: 100%;
-        color: snow;
+        color: #F7F9FB;
         margin-top:1px;
         margin-bottom:1px;
         padding-top:30px;
-        background-color: #153546;
+        background: rgb(22,105,131);
+background: linear-gradient(270deg, rgba(22,105,131,1) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(22,105,131,1) 100%);
         position: relative;
         min-height: 300px;
         text-align: center;
@@ -296,8 +297,8 @@
         min-height: 100vh;
         }
 
-        .welcome-section div{
-            min-width: 100vw;
+        .welcome-section, .responsive{
+            min-width: 100%;
         }
     }
 
