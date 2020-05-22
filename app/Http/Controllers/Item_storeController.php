@@ -17,7 +17,7 @@ class Item_storeController extends Controller
      */
     public function index()
     {   
-        $allitems = Item::select('id','item_name','item_cost')->get();
+        $allitems = Item::select('id','item_name','item_cost')->where('in_store','=', 1)-> get();
         $gold_amount = Stock::where('user_id',auth::user()->id)->first('gold_amount');
 
         return view('item_store', compact('gold_amount', 'allitems'));

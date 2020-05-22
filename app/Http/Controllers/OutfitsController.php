@@ -35,16 +35,17 @@ class OutfitsController extends Controller
         $unit_stats = outfit::where('id', $data)->first();
         $user_items = user_item::where('user_id', auth::user()->id)->get();
 
-        if($unit_stats->item1_id){
-            $item_name1 = Item::where('id', user_item::where('id',$unit_stats->item1_id)->first('item_id')->item_id)->first('item_name');
-        } else $item_name1 = 0;
-        if($unit_stats->item2_id){
-            $item_name2 = Item::where('id', user_item::where('id',$unit_stats->item2_id)->first('item_id')->item_id)->first('item_name');
-        } else $item_name2 = 0;
-        if($unit_stats->item3_id){
-            $item_name3 = Item::where('id', user_item::where('id',$unit_stats->item3_id)->first('item_id')->item_id)->first('item_name');
-        } else $item_name3 = 0;
-        return view('outfit/details', compact('id', 'unit_stats','user_items','item_name1','item_name2','item_name3'));
+        if($unit_stats->item1_id != 0){
+            $item1 = Item::where('id', user_item::where('id' ,$unit_stats->item1_id)->first('item_id')->item_id)->first();
+        }   else $item1 = Item::where('id' , '=' , 0)->first();
+        if($unit_stats->item2_id != 0){
+            $item2 = Item::where('id', user_item::where('id',$unit_stats->item2_id)->first('item_id')->item_id)->first();
+        } else $item2 = Item::where('id' , '=' , 0)->first();
+        if($unit_stats->item3_id != 0){
+            $item3 = Item::where('id', user_item::where('id',$unit_stats->item3_id)->first('item_id')->item_id)->first();
+        } else $item3 = Item::where('id' , '=' , 0)->first();
+        
+        return view('outfit/details', compact('id', 'unit_stats','user_items','item1','item2','item3'));
     }
 
     /**
@@ -117,9 +118,9 @@ class OutfitsController extends Controller
         $unit = outfit::where('id', $request->outfit_id)->first();
 
         if($request->available_item1){
-            if($unit->item1_id != null){
+            if($unit->item1_id != 0){
                 outfit::where('id', $request->outfit_id)
-                ->update(['item1_id'=>null]);
+                ->update(['item1_id'=> 0]);
                 user_item::where('id', $unit->item1_id)
                 ->update(['assigned'=>0]);
             }
@@ -132,9 +133,9 @@ class OutfitsController extends Controller
         }
 
         if($request->available_item2){
-            if($unit->item2_id != null){
+            if($unit->item2_id != 0){
                 outfit::where('id', $request->outfit_id)
-                ->update(['item2_id'=>null]);
+                ->update(['item2_id'=> 0]);
                 user_item::where('id', $unit->item2_id)
                 ->update(['assigned'=>0]);
             }
@@ -146,9 +147,9 @@ class OutfitsController extends Controller
         }
 
         if($request->available_item3){
-            if($unit->item3_id != null){
+            if($unit->item3_id != 0){
                 outfit::where('id', $request->outfit_id)
-                ->update(['item3_id'=>null]);
+                ->update(['item3_id'=> 0]);
                 user_item::where('id', $unit->item3_id)
                 ->update(['assigned'=>0]);
             }
@@ -179,9 +180,9 @@ class OutfitsController extends Controller
 
         outfit::where('id', $request->outfit_id)
         ->update([
-        'item1_id'=>null,
-        'item2_id'=>null,
-        'item3_id'=>null
+        'item1_id'=>0,
+        'item2_id'=>0,
+        'item3_id'=>0,
         ]);
 
         return redirect()->back();
