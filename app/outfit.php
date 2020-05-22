@@ -25,5 +25,4 @@ class outfit extends Model
         return $this->hasOne(Formation::class,'id','position');
     }
 
-
 }

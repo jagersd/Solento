@@ -13,4 +13,9 @@ class Item extends Model
     {
         return $this->hasMany(Item_stat::class,'item_id','id');
     }
+
+    public function user_item()
+    {
+        return $this->hasMany(user_item::class,'item_id','id');
+    }
 }

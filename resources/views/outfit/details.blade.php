@@ -20,38 +20,53 @@
             <p>Speed: {{$unit_stats->base_details->speed}}</p>
             <p>Can be sold for: {{$unit_stats->base_details->cost * 0.5}} gold</p>
 
-            <h5>Equipped items</h5>
-            <p>First item slot: {{$unit_stats->item1_id}} </p>
-            <select id="available_item_list" name="available_items">
-                @foreach ($user_items as $user_item)
-                    @if($user_item->assigned==0)
-                   <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
-                   @endif
-                @endforeach
-            </select>
-            <p>Second item slot: {{$unit_stats->item2_id}} </p>
-            <select id="available_item_list" name="available_items">
-                @foreach ($user_items as $user_item)
-                    @if($user_item->assigned==0)
+            <form method="POST" action="{{ action('OutfitsController@equipItems') }}">
+                {{ csrf_field() }}
+                <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
+
+                <h5>Equipped items</h5>
+                <p>First item slot:  @if($item_name1) {{$item_name1->item_name}} @else --slot free-- @endif </p>
+                <select id="available_item_list" name="available_item1">
+                    <option></option>
+                    @foreach ($user_items as $user_item)
+                        @if($user_item->assigned==0)
                     <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
                     @endif
-                @endforeach
-            </select>
-            <p>Third item slot: {{$unit_stats->item3_id}} </p>
-            <select id="available_item_list" name="available_items">
-                @foreach ($user_items as $user_item)
-                    @if($user_item->assigned==0)
-                    <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
-                    @endif
-                @endforeach
-            </select><br><br>
-            <button>Lock items</button>
+                    @endforeach
+                </select>
+                <p>Second item slot: @if($item_name2) {{$item_name2->item_name}} @else --slot free-- @endif  </p>
+                <select id="available_item_list" name="available_item2">
+                    <option></option>
+                    @foreach ($user_items as $user_item)
+                        @if($user_item->assigned==0)
+                        <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <p>Third item slot: @if($item_name3) {{$item_name3->item_name}} @else --slot free-- @endif  </p>
+                <select id="available_item_list" name="available_item3">
+                    <option></option>
+                    @foreach ($user_items as $user_item)
+                        @if($user_item->assigned==0)
+                        <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
+                        @endif
+                    @endforeach
+                </select><br><br>
+                <button type="submit" class="btn btn-dark">Lock items</button>
+            </form>
+            <br>
+            <form method="POST" action="{{ action('OutfitsController@unequipItems') }}">
+                {{ csrf_field() }}
+                <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
+                <button type="submit" class="btn btn-dark">Unequip all items</button>
+            </form>
         </div>
         <div class="col-md-4">
             <h4>Your item stash</h4>
             @foreach ($user_items as $user_item)
             <div class="card">
                 <div class="card-header">
+                    
                     {{$user_item->item->item_name}} @if ($user_item->assigned == 1) : already equipped @endif
                 </div>
             </div>

@@ -61,3 +61,5 @@ Route::get('/items/{item_id}', 'Item_storeController@item_index');
 Route::get('/outfit','OutfitsController@index');
 Route::get('/outfit/details/{id}','OutfitsController@detailindex');
 Route::post('/outfit','OutfitsController@namechange');
+Route::post('/outfit/details/','OutfitsController@equipItems');
+Route::post('/outfit/details/unequip','OutfitsController@unequipItems');
