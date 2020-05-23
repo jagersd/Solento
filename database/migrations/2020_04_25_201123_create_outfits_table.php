@@ -20,9 +20,9 @@ class CreateOutfitsTable extends Migration
             $table->integer('current_hp');
             $table->integer('position');
             $table->integer('outfit_weight')->default(1);
-            $table->integer('item1_id')->default(1);
-            $table->integer('item2_id')->default(1);
-            $table->integer('item3_id')->default(1);
+            $table->integer('item1_id')->default(0);
+            $table->integer('item2_id')->default(0);
+            $table->integer('item3_id')->default(0);
             $table->string('name')->nullable();
             $table->integer('sell_price')->nullable();
             $table->integer('exp')->default(0);

@@ -10935,3 +10935,17 @@ a.text-dark:focus {
   border: 1px solid grey;
 }
 
+/* Waitingroom */
+
+.waitingroom {
+  background-color: black;
+  color: snow;
+  font-size: 80px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
+

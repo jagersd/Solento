@@ -28,7 +28,6 @@ Route::get('/home', 'User_racesController@index');
 Route::post('/home','User_racesController@create');
 
 
-
 /*
 |
 |View your profile
@@ -63,3 +62,13 @@ Route::get('/outfit/details/{id}','OutfitsController@detailindex');
 Route::post('/outfit','OutfitsController@namechange');
 Route::post('/outfit/details/','OutfitsController@equipItems');
 Route::post('/outfit/details/unequip','OutfitsController@unequipItems');
+
+/*
+|
+|Battle routes
+|
+*/
+
+Route::get('/battle/prepare', 'BattlesController@index');
+Route::post('/battle/field/', 'BattlesController@create_or_update');
+Route::get('/battle/field/{battlecode}', 'BattlesController@battle');

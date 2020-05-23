@@ -11,7 +11,9 @@
             <i>{{$unit_stats->base_details->description}}</i>
         </div>
         <div class="col-md-4" id="all-stats">
-            <h4>{{$unit_stats->name}}</h4>
+            <h3>{{$unit_stats->name}}</h3>
+
+            <h4>{{$unit_stats->formation->position}}</h4>
             
             <p>HP: {{$unit_stats->base_details->hp}} + {{ $item1->item_hp + $item2->item_hp + $item3->item_hp}} </p>
             <p>Strength: {{$unit_stats->base_details->strength}} + {{ $item1->item_stength + $item2->item_stength + $item3->item_stength}}</p>
