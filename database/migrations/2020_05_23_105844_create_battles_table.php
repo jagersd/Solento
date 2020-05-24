@@ -19,7 +19,7 @@ class CreateBattlesTable extends Migration
             $table->integer('player2')->nullable();
             $table->integer('result')->nullable();
             $table->integer('closed')->nullable();
-            $table->string('battlecode');
+            $table->string('battlecode')->unique();
             $table->timestamps();
         });
     }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 Use Auth;
 Use App\outfit;
 Use App\battle;
+
 
 class BattlesController extends Controller
 {
@@ -17,6 +19,20 @@ class BattlesController extends Controller
     public function index()
     {
         return view('battle/prepare');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sequence($battlecode)
+    {
+        $battle_details = battle::where('battlecode',$battlecode)->first();
+        $username1 = DB::table('users')->where('id',$battle_details->player1)->first()->name;
+        $username2 = DB::table('users')->where('id',$battle_details->player2)->first()->name;
+
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2'));
     }
 
     /**

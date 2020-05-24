@@ -8,4 +8,5 @@ class battle extends Model
 {
     Protected $guarded = [];
     protected $table = 'battles';
+
 }

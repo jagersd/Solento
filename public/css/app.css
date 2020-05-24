@@ -10938,9 +10938,10 @@ a.text-dark:focus {
 /* Waitingroom */
 
 .waitingroom {
-  background-color: black;
+  background: #166983;
+  background: linear-gradient(270deg, #166983 0%, #0f4657 15%, #0f4657 85%, #166983 100%);
   color: snow;
-  font-size: 80px;
+  font-size: 40px;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -10948,5 +10949,66 @@ a.text-dark:focus {
   left: 0px;
   z-index: 1000;
   opacity: 1;
+  text-align: center;
+}
+
+.waitingroomtext {
+  margin-top: 20%;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 

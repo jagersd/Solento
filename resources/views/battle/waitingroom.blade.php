@@ -1,11 +1,11 @@
 <div class="container-flex">
     <div class="row justify-content-center align-items-center">
         <div class="col-12 waitingroom" id="waitingroom">
-            {{auth::user()->name}}, you are on the lookout for an opponant.
+            <div class="waitingroomtext">{{auth::user()->name}}, you are on the lookout for an opponant.<br>
             
-            {{$battle_details->player1}}
-    
-            {{$battle_details->player2}}
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            
+            </div>   
         </div>
     </div>
 </div>

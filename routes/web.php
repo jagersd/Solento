@@ -72,3 +72,5 @@ Route::post('/outfit/details/unequip','OutfitsController@unequipItems');
 Route::get('/battle/prepare', 'BattlesController@index');
 Route::post('/battle/field/', 'BattlesController@create_or_update');
 Route::get('/battle/field/{battlecode}', 'BattlesController@battle');
+Route::get('/battle/sequence/{battlecode}', 'BattlesController@sequence');
+
