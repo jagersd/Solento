@@ -11,10 +11,11 @@
                 <p>{{$unit->description}}</p>
                 <ul>
                     <li>HP: {{$unit->hp}}</li>
-                    <li>Strenght:{{$unit->strength}}</li>
-                    <li>Armor:{{$unit->armor}}</li>
-                    <li>Intellect:{{$unit->intellect}}</li>
-                    <li>Speed:{{$unit->speed}}</li>
+                    <li>Strenght: {{$unit->strength}}</li>
+                    <li>Armor: {{$unit->armor}}</li>
+                    <li>Intellect: {{$unit->intellect}}</li>
+                    <li>Magic defence: {{$unit->magic_defence}}</li>
+                    <li>Speed: {{$unit->speed}}</li>
                 </ul>
                 <hr>
                 <p>Special traits:</p>

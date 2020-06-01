@@ -11012,3 +11012,10 @@ a.text-dark:focus {
   }
 }
 
+/* Battlesequence CSS */
+
+.vsdevider {
+  background-color: black;
+  color: snow;
+}
+
