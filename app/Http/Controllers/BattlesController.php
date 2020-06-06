@@ -27,14 +27,16 @@ class BattlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function sequence($battlecode)
-    {
+    {   
         $battle_details = battle::where('battlecode',$battlecode)->first();
         $username1 = DB::table('users')->where('id',$battle_details->player1)->first()->name;
         $username2 = DB::table('users')->where('id',$battle_details->player2)->first()->name;
         $outfit1 = outfit::where('user_id',$battle_details->player1)->where('active',1)->get();
         $outfit2 = outfit::where('user_id',$battle_details->player2)->where('active',1)->get();
 
-        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2'));
+        include_once(app_path() . '/Providers/sequencecalc.php');
+
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines'));
     }
 
     /**
