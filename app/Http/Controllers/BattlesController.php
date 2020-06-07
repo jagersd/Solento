@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 Use Auth;
 Use App\outfit;
 Use App\battle;
+Use App\user_item;
+Use App\Item;
 
 
 class BattlesController extends Controller

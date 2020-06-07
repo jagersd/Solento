@@ -1,5 +1,15 @@
 <?php
 
+function get_item_stats($outfit_item_id){
+    if($outfit_item_id !== 0){
+        $item_id = App\user_item::where('id',$outfit_item_id)->first('item_id');
+        $item_stats= App\Item::where('id',$item_id->item_id)->first();
+    } else {
+        $item_stats= App\Item::where('id',0)->first();
+    }
+    return $item_stats;
+}
+
 class outfit_class{
     //properties
     public $front_line=[];
@@ -11,7 +21,9 @@ class outfit_class{
     public $playername;
 
     //methods
-    function set_stats($outfit){
+    
+
+    public function set_stats($outfit){
         //set frontline
         $outfit_hp=[];
         $outfit_strength=[];
@@ -22,12 +34,16 @@ class outfit_class{
 
         foreach($outfit as $unit){
             if($unit->position == 1){
-            array_push($outfit_hp, $unit->current_hp);
-            array_push($outfit_strength, $unit->base_details->strength);
-            array_push($outfit_armor, $unit->base_details->armor);
-            array_push($outfit_intellect, $unit->base_details->intellect);
-            array_push($outfit_magic_defence, $unit->base_details->magic_defence);
-            array_push($outfit_speed, $unit->base_details->speed);
+                $item1 = get_item_stats($unit->item1_id);
+                $item2 = get_item_stats($unit->item2_id);
+                $item3 = get_item_stats($unit->item3_id);
+                
+                array_push($outfit_hp, $unit->current_hp +( $item1->item_hp + $item2->item_hp + $item3->item_hp ));
+                array_push($outfit_strength, $unit->base_details->strength +( $item1->item_strength + $item2->item_strength + $item3->item_strenth ));
+                array_push($outfit_armor, $unit->base_details->armor +( $item1->item_armor + $item2->item_armor + $item3->item_armor ));
+                array_push($outfit_intellect, $unit->base_details->intellect +( $item1->item_intellect + $item2->item_intellect + $item3->item_intellect ));
+                array_push($outfit_magic_defence, $unit->base_details->magic_defence +( $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence ));
+                array_push($outfit_speed, $unit->base_details->speed +( $item1->item_speed + $item2->item_speed + $item3->item_speed ));
             }
         }
         $this->front_line['hp'] = array_sum($outfit_hp);
@@ -47,12 +63,16 @@ class outfit_class{
 
         foreach($outfit as $unit){
             if($unit->position == 2){
-            array_push($outfit_hp, $unit->current_hp);
-            array_push($outfit_strength, $unit->base_details->strength);
-            array_push($outfit_armor, $unit->base_details->armor);
-            array_push($outfit_intellect, $unit->base_details->intellect);
-            array_push($outfit_magic_defence, $unit->base_details->magic_defence);
-            array_push($outfit_speed, $unit->base_details->speed);
+                $item1 = get_item_stats($unit->item1_id);
+                $item2 = get_item_stats($unit->item2_id);
+                $item3 = get_item_stats($unit->item3_id);
+
+                array_push($outfit_hp, $unit->current_hp +( $item1->item_hp + $item2->item_hp + $item3->item_hp ));
+                array_push($outfit_strength, $unit->base_details->strength +( $item1->item_strength + $item2->item_strength + $item3->item_strenth ));
+                array_push($outfit_armor, $unit->base_details->armor +( $item1->item_armor + $item2->item_armor + $item3->item_armor ));
+                array_push($outfit_intellect, $unit->base_details->intellect +( $item1->item_intellect + $item2->item_intellect + $item3->item_intellect ));
+                array_push($outfit_magic_defence, $unit->base_details->magic_defence +( $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence ));
+                array_push($outfit_speed, $unit->base_details->speed +( $item1->item_speed + $item2->item_speed + $item3->item_speed ));
             }
         }
         $this->center_line['hp'] = array_sum($outfit_hp);
@@ -72,12 +92,16 @@ class outfit_class{
 
         foreach($outfit as $unit){
             if($unit->position == 3){
-            array_push($outfit_hp, $unit->current_hp);
-            array_push($outfit_strength, $unit->base_details->strength);
-            array_push($outfit_armor, $unit->base_details->armor);
-            array_push($outfit_intellect, $unit->base_details->intellect);
-            array_push($outfit_magic_defence, $unit->base_details->magic_defence);
-            array_push($outfit_speed, $unit->base_details->speed);
+                $item1 = get_item_stats($unit->item1_id);
+                $item2 = get_item_stats($unit->item2_id);
+                $item3 = get_item_stats($unit->item3_id);
+
+                array_push($outfit_hp, $unit->current_hp +( $item1->item_hp + $item2->item_hp + $item3->item_hp ));
+                array_push($outfit_strength, $unit->base_details->strength +( $item1->item_strength + $item2->item_strength + $item3->item_strenth ));
+                array_push($outfit_armor, $unit->base_details->armor +( $item1->item_armor + $item2->item_armor + $item3->item_armor ));
+                array_push($outfit_intellect, $unit->base_details->intellect +( $item1->item_intellect + $item2->item_intellect + $item3->item_intellect ));
+                array_push($outfit_magic_defence, $unit->base_details->magic_defence +( $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence ));
+                array_push($outfit_speed, $unit->base_details->speed +( $item1->item_speed + $item2->item_speed + $item3->item_speed ));
             }
         }
         $this->back_line['hp'] = array_sum($outfit_hp);
@@ -86,7 +110,6 @@ class outfit_class{
         $this->back_line['intellect'] = array_sum($outfit_intellect);
         $this->back_line['magic_defence'] = array_sum($outfit_magic_defence);
         $this->back_line['speed'] = array_sum($outfit_speed);
-
     }
 
 }
@@ -98,14 +121,14 @@ $outfit1_calc = new outfit_class();
 $outfit1_calc->set_stats($outfit1);
 $outfit1_calc->playername=$username1;
 
-
-
 $outfit2_calc = new outfit_class();
 $outfit2_calc->set_stats($outfit2);
 $outfit2_calc->playername=$username2;
 //Space for special traits
 
 //calc
+
+
 
 //frontline
 $speed_check_front_line = compare($outfit1_calc->front_line['speed'],$outfit2_calc->front_line['speed']);
@@ -258,6 +281,5 @@ if($player1_score > $player2_score){
 function compare($value1, $value2){
     return $value1 - $value2;
 }
-
 
 ?>
