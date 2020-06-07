@@ -59,7 +59,8 @@ class Unit_storeController extends Controller
                 'current_hp'=>$purchaseUnit->hp,
                 'name'=>$purchaseUnit->name,
                 'position'=>$purchaseUnit->preferred_position,
-                'outfit_weight'=>$purchaseUnit->outfit_weight
+                'outfit_weight'=>$purchaseUnit->outfit_weight,
+                'sell_price'=>$purchaseUnit->cost / 2
             ]);
             
             Stock::where('user_id',auth::user()->id)

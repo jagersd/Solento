@@ -10929,6 +10929,13 @@ a.text-dark:focus {
   }
 }
 
+/* Outfit overview */
+
+.outfit-unit button {
+  position: absolute;
+  right: 10px;
+}
+
 /* Unit outfit details */
 
 #artwork {

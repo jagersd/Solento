@@ -21,8 +21,11 @@
             <p>Intellect: {{$unit_stats->base_details->intellect}} + {{ $item1->item_intellect + $item2->item_intellect + $item3->item_intellect}}</p>
             <p>Magic defence: {{$unit_stats->base_details->magic_defence}} + {{ $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence}}</p>
             <p>Speed: {{$unit_stats->base_details->speed}} + {{ $item1->item_speed + $item2->item_speed + $item3->item_speed}}</p>
-            <p>Can be sold for: {{$unit_stats->base_details->cost * 0.5}} gold</p>
+            <p>Can be sold for: {{$unit_stats->sell_price}} gold</p>
 
+            <button class="btn btn-dark" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
+            
+            <br><br>
             <form method="POST" action="{{ action('OutfitsController@equipItems') }}">
                 {{ csrf_field() }}
                 <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
@@ -105,6 +108,28 @@
     </div>
 </div>
 
+<div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
 
+            <!-- Modal root -->
+            <div class="m-header"> 
+                <h2 class="myModalLabel"> Are you sure you want to sell this unit for {{$unit_stats->sell_price}} gold? </h2> 
+            </div> 
+
+            <!-- Modal footer -->
+            <div class="footer"> 
+                <form method="POST" action="{{ action('OutfitsController@sell_unit') }}">
+                {{ csrf_field() }}
+                <input type="hidden" id="outfit_id" name="outfit_id" value="{{$unit_stats->id}}">
+                <input type="hidden" id="sell_price" name="sell_price" value="{{$unit_stats->sell_price}}">
+                <button class="btn btn-dark" type="submit">Confirm</button>
+                <button class="btn btn-dark" data-toggle="modal" data-dismiss="modal" >Return</button>
+                </form>
+            </div> 
+
+        </div> 
+    </div> 
+</div> 
 
 @endsection

@@ -9,6 +9,7 @@ use Auth;
 use App\outfit;
 use App\user_item; 
 use App\Item;
+use App\Stock;
 
 class OutfitsController extends Controller
 {
@@ -20,8 +21,9 @@ class OutfitsController extends Controller
     public function index()
     {
         $units = outfit::where('user_id', auth::user()->id)->get();
+        $user_items = user_item::where('user_id', auth::user()->id)->get();
 
-        return view('outfit', compact('units'));
+        return view('outfit', compact('units','user_items'));
     }
 
     /**
@@ -187,6 +189,47 @@ class OutfitsController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Update records required for updating items
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function sell_unit(Request $request)
+    {   
+        $unit = outfit::where('id', $request->outfit_id)->first();
+
+        user_item::where('id', $unit->item1_id)->update(['assigned'=>0]);
+        user_item::where('id', $unit->item2_id)->update(['assigned'=>0]);
+        user_item::where('id', $unit->item3_id)->update(['assigned'=>0]);
+
+        outfit::where('id', $request->outfit_id)
+        ->update([
+        'item1_id'=>0,
+        'item2_id'=>0,
+        'item3_id'=>0,
+        ]);
+
+        $user_id_checker = outfit::where('id',$request->outfit_id)->first('user_id')->user_id;
+        
+        if($user_id_checker == Auth::user()->id){
+        
+            $new_stock = Stock::where('user_id', Auth::user()->id)->first('gold_amount')->gold_amount + $request->sell_price;
+
+            Stock::where('user_id', Auth::user()->id)
+            ->update([
+                'gold_amount'=>$new_stock
+            ]);
+
+            outfit::where('id', $request->outfit_id)->delete();
+        }
+
+        return redirect()->action('OutfitsController@index');
+
+    }
+
 
     /**
      * Remove the specified resource from storage.

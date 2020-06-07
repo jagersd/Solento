@@ -62,6 +62,7 @@ Route::get('/outfit/details/{id}','OutfitsController@detailindex');
 Route::post('/outfit','OutfitsController@namechange');
 Route::post('/outfit/details/','OutfitsController@equipItems');
 Route::post('/outfit/details/unequip','OutfitsController@unequipItems');
+Route::post('/outfit/details/sell_unit','OutfitsController@sell_unit');
 
 /*
 |

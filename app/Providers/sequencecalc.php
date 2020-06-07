@@ -136,8 +136,8 @@ if($speed_check_front_line > 0){
     $battle_lines += [1=>$username1." is quickest on the frontline"];
     //calculation if player1 is quickest on the front line
     $hp_remain = $outfit2_calc->front_line['hp'] - ($outfit1_calc->front_line['strength'] - $outfit2_calc->front_line['armor']);
-    $hp_remain -= $outfit1_calc->front_line['intellect'] - $outfit2_calc->front_line['magic_defence'];
-
+    $hp_remain -= ($outfit1_calc->front_line['intellect'] - $outfit2_calc->front_line['magic_defence']);
+    
     if($hp_remain < 0){
         $outfit1_calc->front_line_winner=1;
         $battle_lines += [2=>$username1." wins the battle on the front line"];
@@ -240,7 +240,7 @@ if($speed_check_back_line > 0){
     }
 
 }   elseif ($speed_check_back_line < 0) {
-    $battle_lines += [10=>$username2." is quickest on the back line"];
+    $battle_lines += [20=>$username2." is quickest on the back line"];
     //calculation if player 2 is quickest
     $hp_remain = $outfit1_calc->back_line['hp'] - ($outfit2_calc->back_line['strength'] - $outfit1_calc->back_line['armor']);
     $hp_remain -= $outfit2_calc->back_line['intellect'] - $outfit1_calc->back_line['magic_defence'];
