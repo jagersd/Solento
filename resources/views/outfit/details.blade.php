@@ -12,8 +12,6 @@
         </div>
         <div class="col-md-4" id="all-stats">
             <h3>{{$unit_stats->name}}</h3>
-
-            <h4>{{$unit_stats->formation->position}}</h4>
             
             <p>HP: {{$unit_stats->base_details->hp}} + {{ $item1->item_hp + $item2->item_hp + $item3->item_hp}} </p>
             <p>Strength: {{$unit_stats->base_details->strength}} + {{ $item1->item_stength + $item2->item_stength + $item3->item_stength}}</p>
@@ -23,7 +21,8 @@
             <p>Speed: {{$unit_stats->base_details->speed}} + {{ $item1->item_speed + $item2->item_speed + $item3->item_speed}}</p>
             <p>Can be sold for: {{$unit_stats->sell_price}} gold</p>
 
-            <button class="btn btn-dark" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
+            <button class="btn btn-warning" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
+            
             
             <br><br>
             <form method="POST" action="{{ action('OutfitsController@equipItems') }}">
@@ -58,13 +57,20 @@
                         @endif
                     @endforeach
                 </select><br><br>
-                <button type="submit" class="btn btn-dark">Lock items</button>
+                <h5>Position on the field</h5>
+                <select name="position_on_field" id="position_on_field">
+                    <option value="" selected disabled hidden>{{$unit_stats->formation->position}}</option>
+                    <option value="1">Front Guard</option>
+                    <option value="2">Center Line</option>
+                    <option value="3">Support / Firing range</option>
+                </select>   <br><br>
+                <button type="submit" class="btn btn-primary">Lock configuration</button>
             </form>
             <br>
             <form method="POST" action="{{ action('OutfitsController@unequipItems') }}">
                 {{ csrf_field() }}
                 <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
-                <button type="submit" class="btn btn-dark">Unequip all items</button>
+                <button type="submit" class="btn btn-primary">Unequip all items</button>
             </form>
         </div>
         <div class="col-md-4">

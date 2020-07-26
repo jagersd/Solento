@@ -8,6 +8,7 @@
             <form method="POST" action="{{ action('BattlesController@create_or_update') }}">
                 {{ csrf_field() }}
             <button type="submit" class="btn btn-dark">To battle!</button>
+                {{$outfit_overview}}
             </form>
         </div>
     </div>

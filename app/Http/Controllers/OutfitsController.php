@@ -161,6 +161,11 @@ class OutfitsController extends Controller
             user_item::where('id',$request->available_item3)
             ->update(['assigned'=>1]);
         }
+
+        if($request->position_on_field){
+            outfit::where('id', $request->outfit_id)
+            ->update(['position'=>$request->position_on_field]);
+        }
         
         return redirect()->back();
     }

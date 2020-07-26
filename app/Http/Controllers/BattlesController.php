@@ -20,7 +20,8 @@ class BattlesController extends Controller
      */
     public function index()
     {
-        return view('battle/prepare');
+        $outfit_overview = outfit::where('user_id' , auth::user()->id)->where('active',1)->get(['position','name']);
+        return view('battle/prepare', compact('outfit_overview'));
     }
 
     /**
