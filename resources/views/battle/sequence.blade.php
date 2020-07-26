@@ -54,7 +54,7 @@
 <!-- Formation calculation -->
 <div class="container-fluid sequence-intro">
     <div class="row flex-column flex-md-row">
-        <div class="col-5 text-center formation-match">
+        <div class="col-4 text-center formation-match">
             <div class="position"><h3>Front line:</h3>
             @foreach ($outfit1_calc->front_line as $stat_name=>$stat_value)
                 <p>{{$stat_name}} : {{$stat_value}}</p>
@@ -72,18 +72,22 @@
             </div>
         </div>
 
-        <div class="col-2 text-center vsdevider">
-            VS (formation-match)<br>
+        <div class="col-4 text-center vsdevider">
+            <h4>VS (formation-match)</h4>
             {{$battle_lines[1]}}<br>
             {{$battle_lines[2]}}<br>
             {{$battle_lines[10]}}<br>
             {{$battle_lines[11]}}<br>
             {{$battle_lines[20]}}<br>
             {{$battle_lines[21]}}<br><br>
-            {{$battle_lines[100]}}<br>
+            {{$battle_lines[100]}}<br><br><br>
+            <h4>Complete battle logs:</h4>
+            @foreach ($battle_logs as $log)
+            <p>{{$log}}</p>
+            @endforeach
         </div>
 
-        <div class="col-5 text-center formation-match">
+        <div class="col-4 text-center formation-match">
             <div class="position"><h3>Front line:</h3>
             @foreach ($outfit2_calc->front_line as $stat_name=>$stat_value)
                 <p>{{$stat_name}} : {{$stat_value}}</p>

@@ -39,7 +39,7 @@ class BattlesController extends Controller
 
         include_once(app_path() . '/Providers/sequencecalc.php');
 
-        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines'));
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs'));
     }
 
     /**

@@ -19,6 +19,7 @@ class outfit_class{
     public $center_line_winner=0;
     public $back_line_winner=0;
     public $playername;
+    public $outfit_ids=[];
     public $trait_ids=[];
 
     //methods
@@ -118,11 +119,18 @@ class outfit_class{
                 array_push($this->trait_ids,$id->dev_code);
             }
         }
+
+        //add oufit_id to array
+        foreach($outfit as $unit){
+            array_push($this->outfit_ids,$unit->id);
+        }
+        
     }
 }
 
 //setup
 $battle_lines =[];
+$battle_logs=[];
 
 $outfit1_calc = new outfit_class();
 $outfit1_calc->set_stats($outfit1);
@@ -132,15 +140,20 @@ $outfit2_calc = new outfit_class();
 $outfit2_calc->set_stats($outfit2);
 $outfit2_calc->playername=$username2;
 
+
 //Space for special traits
 require_once('strait_calculator.php');
 
+array_push($battle_logs,"Complete battle logs for: $username1");
+
 foreach ($outfit1_calc->trait_ids as $special_trait){
-    $special_trait($outfit1_calc, $outfit2_calc);
+    $special_trait($outfit1_calc, $outfit2_calc,$battle_logs);
 }
 
+array_push($battle_logs,"Complete battle logs for: $username2");
+
 foreach ($outfit2_calc->trait_ids as $special_trait){
-    $special_trait($outfit1_calc, $outfit2_calc);
+    $special_trait($outfit2_calc, $outfit1_calc,$battle_logs);
 }
 
 /*
