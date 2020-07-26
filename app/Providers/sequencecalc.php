@@ -19,9 +19,9 @@ class outfit_class{
     public $center_line_winner=0;
     public $back_line_winner=0;
     public $playername;
+    public $trait_ids=[];
 
     //methods
-    
 
     public function set_stats($outfit){
         //set frontline
@@ -110,8 +110,15 @@ class outfit_class{
         $this->back_line['intellect'] = array_sum($outfit_intellect);
         $this->back_line['magic_defence'] = array_sum($outfit_magic_defence);
         $this->back_line['speed'] = array_sum($outfit_speed);
-    }
 
+        //add traits to array
+        foreach($outfit as $unit){
+            $add_to_traits = DB::table('unit_stats')->where('unit_id',$unit->unit_id)->get('dev_code');
+            foreach($add_to_traits as $id){
+                array_push($this->trait_ids,$id->dev_code);
+            }
+        }
+    }
 }
 
 //setup
@@ -124,11 +131,25 @@ $outfit1_calc->playername=$username1;
 $outfit2_calc = new outfit_class();
 $outfit2_calc->set_stats($outfit2);
 $outfit2_calc->playername=$username2;
+
 //Space for special traits
+require_once('strait_calculator.php');
 
-//calc
+foreach ($outfit1_calc->trait_ids as $special_trait){
+    $special_trait($outfit1_calc, $outfit2_calc);
+}
 
+foreach ($outfit2_calc->trait_ids as $special_trait){
+    $special_trait($outfit1_calc, $outfit2_calc);
+}
 
+/*
+|
+|
+Actual outcome calculation
+|
+|
+*/
 
 //frontline
 $speed_check_front_line = compare($outfit1_calc->front_line['speed'],$outfit2_calc->front_line['speed']);
