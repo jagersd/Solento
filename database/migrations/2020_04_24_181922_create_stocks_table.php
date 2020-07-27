@@ -18,6 +18,8 @@ class CreateStocksTable extends Migration
             $table->integer('user_id');
             $table->integer('gold_amount');
             $table->integer('victory_points');
+            $table->integer('max_outfit')->default(50);
+            $table->string('emblem')->nullable();
             $table->timestamps();
         });
     }

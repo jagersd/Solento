@@ -27,7 +27,8 @@ class CreateOutfitsTable extends Migration
             $table->integer('sell_price')->nullable();
             $table->integer('exp')->default(0);
             $table->text('custom_description')->nullable();
-            $table->boolean('active')->default(1);
+            $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('deleted')->default(0);
             $table->timestamps();
         });
     }

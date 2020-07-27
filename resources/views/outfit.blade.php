@@ -4,6 +4,17 @@
 <a href="/home"><--- Go Back</a>
 <div class="container">
     <div class="row">
+        <div class="col-12 text-center">
+            <h4>Active outfit size: @foreach ($units as $unit)
+                {{$unit->sum('outfit_weight')}}                
+            @endforeach/ {{$max_outfit}}</h4>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
         <div class="col-6">
             <h2>Front line</h2>
             @foreach ($units as $unit)

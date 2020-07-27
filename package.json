@@ -24,6 +24,6 @@
     },
     "dependencies": {
         "aos": "^2.3.4",
-        "jquery": "^3.5.1"
+        "jquery": "^3.4.1"
     }
 }

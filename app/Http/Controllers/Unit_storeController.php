@@ -48,6 +48,12 @@ class Unit_storeController extends Controller
         $purchaseUnit = Base_unit::where('id',$data['unit_id'])->first();
 
         $current_stock=Stock::where('user_id',auth::user()->id)->first('gold_amount');
+        
+        //other races cost extra
+        if($purchaseUnit->race_id != auth::user()->user_race_combination->race_id){
+            $purchaseUnit->cost = ceil($purchaseUnit->cost *1.5);
+        }
+
         $new_gold_amount = $current_stock->gold_amount - $purchaseUnit->cost;
 
         //execute purchase after if statement for security

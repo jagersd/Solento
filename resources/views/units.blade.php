@@ -30,7 +30,8 @@
                 <p>This unit does not have special traits. What you see is what you get, and it's good.</p>
                     
                 @endif
-                <div class="card-footer">Cost: {{$unit->cost}}<br>
+                <div class="card-footer">Cost: @if($unit->race_id == auth::user()->user_race_combination->race_id)
+                    {{$unit->cost}} @else {{ceil($unit->cost * 1.5)}} @endif<br>
                     Gold to spend: {{$gold_amount->gold_amount}}
                     <br>
                     @if($unit->cost <= $gold_amount->gold_amount)

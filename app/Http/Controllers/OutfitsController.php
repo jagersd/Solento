@@ -19,11 +19,12 @@ class OutfitsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $units = outfit::where('user_id', auth::user()->id)->get();
+    {   
+        $max_outfit = auth::user()->stock->first('max_outfit')->max_outfit;
+        $units = outfit::where('user_id', auth::user()->id)->where('deleted',0)->get();
         $user_items = user_item::where('user_id', auth::user()->id)->get();
 
-        return view('outfit', compact('units','user_items'));
+        return view('outfit', compact('units','user_items','max_outfit'));
     }
 
     /**
@@ -228,7 +229,9 @@ class OutfitsController extends Controller
                 'gold_amount'=>$new_stock
             ]);
 
-            outfit::where('id', $request->outfit_id)->delete();
+            outfit::where('id', $request->outfit_id)->update([
+                'deleted'=>0
+            ]);
         }
 
         return redirect()->action('OutfitsController@index');

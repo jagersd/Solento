@@ -14,13 +14,19 @@ Use App\Item;
 class BattlesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Provides an overview before going into a match. Also checks if the max outfit weight allows the player to find a match. 
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $outfit_overview = outfit::where('user_id' , auth::user()->id)->where('active',1)->get(['position','name']);
+    {   
+        $outfit_overview = outfit::where('user_id' , auth::user()->id)->where('active',1)->where('deleted',0)->get(['position','name']);
+        $outfit_weight = outfit::where('user_id' , auth::user()->id)->where('active', 1)->where('deleted',0)->sum('outfit_weight');
+        
+        if($outfit_weight > auth::user()->stock->first('max_outfit')){
+            return view('/home');
+        }
+
         return view('battle/prepare', compact('outfit_overview'));
     }
 
@@ -34,8 +40,8 @@ class BattlesController extends Controller
         $battle_details = battle::where('battlecode',$battlecode)->first();
         $username1 = DB::table('users')->where('id',$battle_details->player1)->first()->name;
         $username2 = DB::table('users')->where('id',$battle_details->player2)->first()->name;
-        $outfit1 = outfit::where('user_id',$battle_details->player1)->where('active',1)->get();
-        $outfit2 = outfit::where('user_id',$battle_details->player2)->where('active',1)->get();
+        $outfit1 = outfit::where('user_id',$battle_details->player1)->where('active',1)->where('deleted',0)->get();
+        $outfit2 = outfit::where('user_id',$battle_details->player2)->where('active',1)->where('deleted',0)->get();
 
         include_once(app_path() . '/Providers/sequencecalc.php');
 

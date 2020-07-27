@@ -3,7 +3,6 @@
 @section('content')
 <a href="/home"><--- Go Back</a>
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -16,7 +15,8 @@
                                     <div class="list-group">
                                         @foreach ($race->base_units->sortBy('cost') as $unit)
                                             <a href="units/{{$unit->id}}" class="list-group-item list-group-item-action list-group-item-dark ">
-                                                {{$unit->name}} {{$unit->cost}}
+                                            {{$unit->name}} @if($unit->race_id == auth::user()->user_race_combination->race_id)
+                                            {{$unit->cost}} @else {{ceil($unit->cost * 1.5)}} @endif
                                             </a>   
                                         @endforeach
                                     </div>
