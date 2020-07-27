@@ -9,6 +9,7 @@ class outfit extends Model
     //
     protected $table = 'outfits';
     protected $guarded = array();
+    //protected $fillable = ['active','deleted'];
 
     public function user()
     {

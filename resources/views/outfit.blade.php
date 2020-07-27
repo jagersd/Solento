@@ -5,9 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h4>Active outfit size: @foreach ($units as $unit)
-                {{$unit->sum('outfit_weight')}}                
-            @endforeach/ {{$max_outfit}}</h4>
+            <h4>Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@ class CreateUnitStatsTable extends Migration
             $table->integer('unit_id');
             $table->string('stat_name');
             $table->text('stat_description');
-            $table->text('dev_description');
+            $table->text('dev_code');
             $table->integer('stat_value')->nullable();
             $table->timestamps();
         });

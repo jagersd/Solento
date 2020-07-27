@@ -11,6 +11,27 @@ function aoes1($self, $opponant, &$battle_logs){
     } 
 }
 
+function aoes2($self, $opponant, &$battle_logs){
+
+    $log = 'The code for "Playing with fire" still has to be written'; 
+    array_push($battle_logs,$log);
+}
+
+
+function aoe1($self, $opponant, &$battle_logs){
+
+    $log = 'The code for "Succesfull emergancy landing" still has to be written'; 
+    array_push($battle_logs,$log);
+}
+
+function aoestat1($self, $opponant, &$battle_logs){
+
+    $opponant->front_line['armor']-=(count($opponant->outfit_ids)*5);
+    $log = 'Speed of shadows greatly decreases the '.$opponant->playername.' front line armor';
+    array_push($battle_logs,$log);
+
+}
+
 function aoestat2($self, $opponant, &$battle_logs){
     $unit_with_this_stat= DB::table('unit_stats')->where('dev_code','aoestat2')->first('unit_id')->unit_id;
     

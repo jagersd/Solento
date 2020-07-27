@@ -167,7 +167,11 @@ class OutfitsController extends Controller
             outfit::where('id', $request->outfit_id)
             ->update(['position'=>$request->position_on_field]);
         }
-        
+
+        if(isset($request->active_inactive)){
+            outfit::where('id', $request->outfit_id)
+            ->update(['active'=>$request->active_inactive]);
+        }
         return redirect()->back();
     }
 
@@ -216,6 +220,7 @@ class OutfitsController extends Controller
         'item1_id'=>0,
         'item2_id'=>0,
         'item3_id'=>0,
+        'deleted'=>1
         ]);
 
         $user_id_checker = outfit::where('id',$request->outfit_id)->first('user_id')->user_id;
@@ -229,9 +234,7 @@ class OutfitsController extends Controller
                 'gold_amount'=>$new_stock
             ]);
 
-            outfit::where('id', $request->outfit_id)->update([
-                'deleted'=>0
-            ]);
+            
         }
 
         return redirect()->action('OutfitsController@index');

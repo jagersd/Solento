@@ -57,12 +57,17 @@
                         @endif
                     @endforeach
                 </select><br><br>
-                <h5>Position on the field</h5>
+                <h5>Position on the field or benched</h5>
                 <select name="position_on_field" id="position_on_field">
                     <option value="" selected disabled hidden>{{$unit_stats->formation->position}}</option>
                     <option value="1">Front Guard</option>
                     <option value="2">Center Line</option>
                     <option value="3">Support / Firing range</option>
+                </select>   <br><br>
+                <select name="active_inactive" id="active_inactive">
+                    <option value="" selected disabled hidden>@if ($unit_stats->active == 1) Active @else Benched @endif</option>
+                    <option value="1">Active</option>
+                    <option value="0">Bench</option>
                 </select>   <br><br>
                 <button type="submit" class="btn btn-primary">Lock configuration</button>
             </form>
