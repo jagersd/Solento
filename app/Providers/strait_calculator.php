@@ -4,7 +4,7 @@
 function aoes1($self, $opponant, &$battle_logs){
     $chance = random_int(1,100);
 
-    if($chance > 50){
+    if($chance > 75){
         $self->front_line["hp"] -= 35;
         $log="Wreckless Cannons hit its own allies for 35 hp";
         array_push($battle_logs,$log);
@@ -12,9 +12,14 @@ function aoes1($self, $opponant, &$battle_logs){
 }
 
 function aoes2($self, $opponant, &$battle_logs){
+    $chance = random_int(1,100);
 
-    $log = 'The code for "Playing with fire" still has to be written'; 
-    array_push($battle_logs,$log);
+    if($chance > 75){
+        $damage = DB::table('unit_stats')->where('dev_code','aoes2')->first('stat_value')->stat_value;
+        $self->back_line["hp"] -= $damage;
+        $log="The army of ".$self->playername." was hit with its own firy plays";
+        array_push($battle_logs,$log);
+    } 
 }
 
 
@@ -64,7 +69,6 @@ function aoestat3($self, $opponant, &$battle_logs){
 
     if($position_check == 3){
         $boost= 35 * count($self->outfit_ids);
-        echo $boost;
         $self->front_line["magic_defence"]+= ($boost / 3);
         $self->center_line["magic_defence"]+= ($boost / 3);
         $log = 'Boosting shouts bumped up the magic defence of the army by '.$boost;

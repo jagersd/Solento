@@ -285,7 +285,7 @@ if($speed_check_back_line > 0){
     } else {
         $outfit1_calc->back_line_winner=1;
         $battle_lines += [21=>$username1." wins the battle on the back line"];
-    }
+    }dd($battlecode);
 }   else {
     $battle_lines += [20=>"Both players are equally slow in the back line"];
     //calculation if both players have same speed on the back line
@@ -306,14 +306,45 @@ if($speed_check_back_line > 0){
 $player1_score = ($outfit1_calc->front_line_winner + $outfit1_calc->center_line_winner + $outfit1_calc->back_line_winner);
 $player2_score = ($outfit2_calc->front_line_winner + $outfit2_calc->center_line_winner + $outfit2_calc->back_line_winner);
 
+/*
+|
+|
+Processing results and awards
+|
+|
+*/
+
+
+
 if($player1_score > $player2_score){
     $battle_lines[100]=$outfit1_calc->playername." has come out victorious in this match";
+    DB::table('battles')->where('battlecode',$battlecode)->update([
+        'result'=>$battle_details->player1
+    ]);
+
+    process_victorypoints($battle_details->player1, $battle_details->player2);
+    
 } else {
     $battle_lines[100]=$outfit2_calc->playername." has come out victorious in this match";
+    DB::table('battles')->where('battlecode',$battlecode)->update([
+        'result'=>$battle_details->player2
+    ]);
+
+    process_victorypoints($battle_details->player2, $battle_details->player1);
 }
 
 function compare($value1, $value2){
     return $value1 - $value2;
+}
+
+function process_victorypoints($winner, $loser){
+    $vp_winner = DB::table('stocks')->where('user_id',$winner)->first('victory_points')->victory_points;
+    $vp_winner =ceil($vp_winner * 1.1);
+    $vp_loser = DB::table('stocks')->where('user_id',$loser)->first('victory_points')->victory_points;
+    $vp_loser =ceil($vp_loser * 0.9);
+    
+    DB::table('stocks')->where('user_id',$winner)->update(['victory_points'=>$vp_winner]);
+    DB::table('stocks')->where('user_id',$loser)->update(['victory_points'=>$vp_loser]);
 }
 
 ?>

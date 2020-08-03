@@ -74,4 +74,5 @@ Route::get('/battle/prepare', 'BattlesController@index');
 Route::post('/battle/field/', 'BattlesController@create_or_update');
 Route::get('/battle/field/{battlecode}', 'BattlesController@battle');
 Route::get('/battle/sequence/{battlecode}', 'BattlesController@sequence');
+Route::get('/battle/complete/{complete_code}', 'BattlesController@complete_sequence');
 

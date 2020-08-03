@@ -9,6 +9,7 @@ Use App\outfit;
 Use App\battle;
 Use App\user_item;
 Use App\Item;
+Use App\Stock;
 
 
 class BattlesController extends Controller
@@ -42,10 +43,12 @@ class BattlesController extends Controller
         $username2 = DB::table('users')->where('id',$battle_details->player2)->first()->name;
         $outfit1 = outfit::where('user_id',$battle_details->player1)->where('active',1)->where('deleted',0)->get();
         $outfit2 = outfit::where('user_id',$battle_details->player2)->where('active',1)->where('deleted',0)->get();
+        $complete_code = substr(str_shuffle('123456789'),1,5);
+        battle::where('battlecode',$battlecode)->update(['closed'=>$complete_code]);
 
         include_once(app_path() . '/Providers/sequencecalc.php');
 
-        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs'));
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs','complete_code'));
     }
 
     /**
@@ -79,9 +82,11 @@ class BattlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function complete_sequence($complete_code)
+    {   
+        $battlecode = battle::where('closed', $complete_code)->first('battlecode')->battlecode;
+        battle::where('battlecode',$battlecode)->update(['claimed'=>1]);
+        return view('battle/complete');
     }
 
     /**
