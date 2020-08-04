@@ -8,6 +8,7 @@ use App\User;
 use App\Race;
 use App\User_race;
 use Auth;
+use Carbon\Carbon;
 
 class User_racesController extends Controller
 {
@@ -25,9 +26,16 @@ class User_racesController extends Controller
 
         $allraces= Race::all();
 
+        $online_count = DB::table('users')->where('last_action', '>', Carbon::now()->subMinutes(5))->count();
+        $match_searches = DB::table('battles')->where('player2',null)->count();
+        $total_matches_today = DB::table('battles')->where('created_at', '>', Carbon::now()->subDays(1))->count();
+
         return view('home', [
             'userraces'=>$userraces,
-            'allraces'=>$allraces
+            'allraces'=>$allraces,
+            'online_count'=>$online_count,
+            'match_searches'=>$match_searches,
+            'total_matches_today'=>$total_matches_today,
         ]);
     }
 
