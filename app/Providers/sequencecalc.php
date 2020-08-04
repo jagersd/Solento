@@ -141,7 +141,13 @@ $outfit2_calc->set_stats($outfit2);
 $outfit2_calc->playername=$username2;
 
 
-//Space for special traits
+/*
+|
+|
+Calculation of unit's special traits
+|
+|
+*/
 require_once('strait_calculator.php');
 
 array_push($battle_logs,"Complete battle logs for: $username1");
@@ -306,6 +312,10 @@ if($speed_check_back_line > 0){
 $player1_score = ($outfit1_calc->front_line_winner + $outfit1_calc->center_line_winner + $outfit1_calc->back_line_winner);
 $player2_score = ($outfit2_calc->front_line_winner + $outfit2_calc->center_line_winner + $outfit2_calc->back_line_winner);
 
+function compare($value1, $value2){
+    return $value1 - $value2;
+}
+
 /*
 |
 |
@@ -314,7 +324,8 @@ Processing results and awards
 |
 */
 
-
+unit_reward($battlecode);
+item_reward($battlecode);
 
 if($player1_score > $player2_score){
     $battle_lines[100]=$outfit1_calc->playername." has come out victorious in this match";
@@ -333,18 +344,35 @@ if($player1_score > $player2_score){
     process_victorypoints($battle_details->player2, $battle_details->player1);
 }
 
-function compare($value1, $value2){
-    return $value1 - $value2;
-}
 
 function process_victorypoints($winner, $loser){
     $vp_winner = DB::table('stocks')->where('user_id',$winner)->first('victory_points')->victory_points;
-    $vp_winner =ceil($vp_winner * 1.1);
+    $vp_winner =ceil($vp_winner * 1.05);
     $vp_loser = DB::table('stocks')->where('user_id',$loser)->first('victory_points')->victory_points;
-    $vp_loser =ceil($vp_loser * 0.9);
+    $vp_loser =ceil($vp_loser * 0.95);
     
     DB::table('stocks')->where('user_id',$winner)->update(['victory_points'=>$vp_winner]);
     DB::table('stocks')->where('user_id',$loser)->update(['victory_points'=>$vp_loser]);
+}
+
+function unit_reward($battlecode){
+    $chance = random_int(1,100);
+    $unit_id = random_int(1,27);
+    if($chance > 95){
+        DB::table('battles')->where('battlecode',$battlecode)->update([
+            'awarded_unit' => $unit_id
+        ]);
+    }
+}
+
+function item_reward($battlecode){
+    $chance = random_int(1,100);
+    $item_id = random_int(1,4);
+    if($chance > 85){
+        DB::table('battles')->where('battlecode',$battlecode)->update([
+            'awarded_item' => $item_id
+        ]);
+    }
 }
 
 ?>

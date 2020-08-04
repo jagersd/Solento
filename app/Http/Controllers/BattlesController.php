@@ -10,6 +10,7 @@ Use App\battle;
 Use App\user_item;
 Use App\Item;
 Use App\Stock;
+Use App\Base_unit;
 
 
 class BattlesController extends Controller
@@ -84,9 +85,41 @@ class BattlesController extends Controller
      */
     public function complete_sequence($complete_code)
     {   
-        $battlecode = battle::where('closed', $complete_code)->first('battlecode')->battlecode;
-        battle::where('battlecode',$battlecode)->update(['claimed'=>1]);
-        return view('battle/complete');
+        $claimed_checker = battle::where('closed',$complete_code)->first('claimed')->claimed;
+        if($claimed_checker == 0){
+            $battle_result = battle::where('closed', $complete_code)->first();
+
+            //add won unit to outfit
+            if($battle_result->awarded_unit != null){
+                $won_unit = Base_unit::where('id',$battle_result->awarded_unit)->first();
+                outfit::create([
+                    'user_id'=>$battle_result->result,
+                    'unit_id'=>$won_unit->id,
+                    'current_hp'=>$won_unit->hp,
+                    'name'=>$won_unit->name,
+                    'position'=>$won_unit->preferred_position,
+                    'outfit_weight'=>$won_unit->outfit_weight,
+                    'sell_price'=>$won_unit->cost / 2
+                ]);
+            }
+
+            //add item to user_item
+            if($battle_result->awarded_item != null){
+                $won_item = Item::where('id',$battle_result->awarded_item)->first();
+                user_item::create([
+                    'user_id'=>$battle_result->result,
+                    'item_id'=>$won_item->id    
+                ]);
+            }
+
+
+            battle::where('battlecode',$battle_result->battlecode)->update(['claimed'=>1]);
+
+
+            return view('battle/complete');
+        } else {
+            return view('message/loot_claimed');
+        }
     }
 
     /**

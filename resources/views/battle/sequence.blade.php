@@ -110,9 +110,15 @@
 
 <div class="container">
     <div class="row">
+        @if (auth::user()->id == $battle_details->result)
         <div class="col-12">
             <a href="/battle/complete/{{$complete_code}}"><button type="submit" class="btn btn-success">Claim loot!</button></a>
         </div>
+        @else
+        <div class="col-12">
+            <a href="/home"><button type="submit" class="btn btn-success">Better luck next time</button></a>
+        </div>
+        @endif
     </div>
 </div>
 

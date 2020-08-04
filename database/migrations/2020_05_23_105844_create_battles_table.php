@@ -18,8 +18,8 @@ class CreateBattlesTable extends Migration
             $table->integer('player1');
             $table->integer('player2')->nullable();
             $table->integer('result')->nullable();
-            $table->integer('closed')->nullable();
-            $table->integer('claimed')->nullable();
+            $table->string('closed', 5)->nullable();
+            $table->integer('claimed')->default(0);
             $table->string('battlecode')->unique();
             $table->integer('awarded_unit')->nullable();
             $table->integer('awarded_item')->nullable();
