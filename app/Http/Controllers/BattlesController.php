@@ -88,6 +88,11 @@ class BattlesController extends Controller
         $claimed_checker = battle::where('closed',$complete_code)->first('claimed')->claimed;
         if($claimed_checker == 0){
             $battle_result = battle::where('closed', $complete_code)->first();
+            
+            //add gold_reward
+            $stock = Stock::where('user_id',$battle_result->result)->first();
+            $stock->gold_amount += $battle_result->awarded_gold;
+            $stock->save();
 
             //add won unit to outfit
             if($battle_result->awarded_unit != null){
@@ -116,7 +121,7 @@ class BattlesController extends Controller
             battle::where('battlecode',$battle_result->battlecode)->update(['claimed'=>1]);
 
 
-            return view('battle/complete');
+            return view('battle/complete', compact('battle_result','won_unit','won_item'));
         } else {
             return view('message/loot_claimed');
         }

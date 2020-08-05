@@ -109,7 +109,7 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row flex-column flex-md-row result_button">
         @if (auth::user()->id == $battle_details->result)
         <div class="col-12">
             <a href="/battle/complete/{{$complete_code}}"><button type="submit" class="btn btn-success">Claim loot!</button></a>

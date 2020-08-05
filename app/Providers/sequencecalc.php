@@ -326,6 +326,7 @@ Processing results and awards
 
 unit_reward($battlecode);
 item_reward($battlecode);
+gold_reward($battlecode);
 
 if($player1_score > $player2_score){
     $battle_lines[100]=$outfit1_calc->playername." has come out victorious in this match";
@@ -333,7 +334,7 @@ if($player1_score > $player2_score){
         'result'=>$battle_details->player1
     ]);
 
-    process_victorypoints($battle_details->player1, $battle_details->player2);
+    process_vp_gold($battle_details->player1, $battle_details->player2);
     
 } else {
     $battle_lines[100]=$outfit2_calc->playername." has come out victorious in this match";
@@ -341,18 +342,24 @@ if($player1_score > $player2_score){
         'result'=>$battle_details->player2
     ]);
 
-    process_victorypoints($battle_details->player2, $battle_details->player1);
+    process_vp_gold($battle_details->player2, $battle_details->player1);
 }
 
 
-function process_victorypoints($winner, $loser){
-    $vp_winner = DB::table('stocks')->where('user_id',$winner)->first('victory_points')->victory_points;
-    $vp_winner =ceil($vp_winner * 1.05);
-    $vp_loser = DB::table('stocks')->where('user_id',$loser)->first('victory_points')->victory_points;
-    $vp_loser =ceil($vp_loser * 0.95);
+function process_vp_gold($winner, $loser){
+    $vp_winner = DB::table('stocks')->where('user_id',$winner)->first(['victory_points','gold_amount']);
+    $vp_winner->victory_points = ceil($vp_winner->victory_points * 1.05);
+    $vp_loser = DB::table('stocks')->where('user_id',$loser)->first(['victory_points','gold_amount']);
+    $vp_loser->victory_points =ceil($vp_loser->victory_points * 0.95);
     
-    DB::table('stocks')->where('user_id',$winner)->update(['victory_points'=>$vp_winner]);
-    DB::table('stocks')->where('user_id',$loser)->update(['victory_points'=>$vp_loser]);
+    DB::table('stocks')->where('user_id',$winner)->update([
+        'victory_points'=>$vp_winner->victory_points,
+        'gold_amount'=>$vp_winner->gold_amount - 50
+    ]);
+    DB::table('stocks')->where('user_id',$loser)->update([
+        'victory_points'=>$vp_loser->victory_points,
+        'gold_amount'=>$vp_loser->gold_amount - 50
+        ]);
 }
 
 function unit_reward($battlecode){
@@ -373,6 +380,13 @@ function item_reward($battlecode){
             'awarded_item' => $item_id
         ]);
     }
+}
+
+function gold_reward($battlecode){
+    $gold_award = random_int(100,250);
+    DB::table('battles')->where('battlecode',$battlecode)->update([
+        'awarded_gold' => $gold_award
+    ]);
 }
 
 ?>
