@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/home"><--- Go Back</a>
+<span class="return">
+    <a href="/home">Go Back</a>
+</span><br><br>
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h4>Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            <h4 class="light-header">Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            <hr>
         </div>
     </div>
 </div>
@@ -14,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <h2>Front line</h2>
+            <h2 class="light-header">Front line</h2>
             @foreach ($units as $unit)
                 @if ($unit->position == 1)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -26,10 +29,11 @@
                             Exp points: {{$unit->exp}}    <br><br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
-                    </div>   
+                    </div>
+                    <br>  
                 @endif 
             @endforeach
-            <h2>Army center</h2>
+            <h2 class="light-header">Army center</h2>
             @foreach ($units as $unit)
                 @if ($unit->position == 2)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -41,10 +45,11 @@
                             Exp points: {{$unit->exp}}    <br><br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
-                    </div>   
+                    </div>
+                    <br>   
                 @endif 
             @endforeach
-            <h2>Firing range and support</h2>
+            <h2 class="light-header">Firing range and support</h2>
             @foreach ($units as $unit)
                 @if ($unit->position == 3)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -56,12 +61,13 @@
                             Exp points: {{$unit->exp}}    <br><br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
-                    </div>   
+                    </div>
+                    <br>   
                 @endif 
             @endforeach
         </div>
         <div class="col-6">
-            <h4>Unequipped items:</h4>
+            <h4 class="light-header">Unequipped items:</h4>
             @foreach ($user_items as $user_item)
             @if($user_item->assigned==0)
             <div class="card">
@@ -71,7 +77,7 @@
             </div>
             @endif
             @endforeach
-            <h4>Equipped items:</h4>
+            <h4 class="light-header">Equipped items:</h4>
             @foreach ($user_items as $user_item)
             @if($user_item->assigned==1)
             <div class="card">

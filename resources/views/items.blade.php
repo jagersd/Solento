@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="/item_store"><--- Go Back</a>
+<span class="return">
+    <a href="/item_store">Go Back</a>
+</span>
 
 <div class="container">
     <div class="row justify-content-center">

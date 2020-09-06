@@ -138,7 +138,7 @@
         <div class="col-2"></div>
         <div class="col-8 responsive">
             <h4>Assets used:</h4>
-            <p>The art work for this front page is gathered from <a href="https://www.artstation.com/">artstation.com</a> without prior request to the artists. When present, the watermarks have been left in as well as the creators name as part of the file name.</p>
+            <p>The art work for this front page is gathered from <a href="https://www.artstation.com/" target="_blank">artstation.com</a> without prior request to the artists. When present, the watermarks have been left in as well as the creators name as part of the file name.</p>
             <p>Going forward, it would be great to have people contributing art directly. Their names will be mentioned whenever the work is displayed.</p>
             <br>
             <h4>For those interested:</h4>
@@ -198,7 +198,7 @@
         margin-bottom:1px;
         padding-top:30px;
         background: rgb(22,105,131);
-background: linear-gradient(270deg, rgba(22,105,131,1) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(22,105,131,1) 100%);
+        background: linear-gradient(270deg, rgba(22,105,131,1) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(22,105,131,1) 100%);
         position: relative;
         min-height: 300px;
         text-align: center;

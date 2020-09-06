@@ -2187,22 +2187,12 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
-.form-control::-webkit-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -10882,7 +10872,118 @@ a.text-dark:focus {
   }
 }
 
-/* Purchage confirmation */
+/*Global*/
+
+body,
+html {
+  background: #166983;
+  background: linear-gradient(270deg, #166983 0%, #0f4657 15%, #0f4657 85%, #166983 100%);
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+}
+
+.navbar {
+  opacity: 0.5;
+  transition: 1s;
+  z-index: 1;
+}
+
+.navbar:hover {
+  opacity: 0.9;
+  transition: 1s;
+}
+
+.card {
+  border-radius: 5px;
+  color: #0f4657;
+}
+
+.card-header {
+  color: black;
+  background-color: #cddadd;
+}
+
+.return {
+  background-color: snow;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: 0.5;
+  transition: 1s;
+  margin-left: 5px;
+}
+
+.return:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+.light-header {
+  color: snow;
+}
+
+/*global-animation*/
+
+#pixie {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*home view*/
+
+.links {
+  text-align: center center;
+}
+
+.fase_link {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  border: 5px solid #0f4657;
+  border-radius: 5px;
+  min-height: 350px;
+}
+
+.fase_link a {
+  color: snow;
+  font-size: x-large;
+  margin-top: 40%;
+}
+
+.fase_link:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .fase_link {
+    margin-left: 10%;
+    min-width: 80%;
+    margin-top: 10px;
+    border: 1px solid snow;
+  }
+}
+
+/*unit catelogue */
+
+.card-header.unit_store {
+  margin-top: 6px;
+}
+
+.card-header.unit_store a {
+  color: #0f4657;
+}
+
+.list-group-item {
+  background-color: #0f4657;
+  color: snow;
+  transition: 1s;
+}
+
+/*Confirmation Modal*/
 
 .modal:before {
   content: "";
@@ -10939,7 +11040,8 @@ a.text-dark:focus {
 /* Unit outfit details */
 
 #artwork {
-  border: 1px solid grey;
+  border: 1px solid snow;
+  border-radius: 5px;
 }
 
 /* Waitingroom */
