@@ -15,6 +15,7 @@ body, html{
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 .navbar{
@@ -24,7 +25,7 @@ body, html{
 }
 
 .navbar:hover{
-  opacity: 0.9;
+  opacity: 1;
   transition: 1s;
 }
 
@@ -35,7 +36,8 @@ body, html{
 
 .card-header{
   color: black;
-  background-color: #cddadd;
+  font-size: larger;
+  background-color: #ddcdcd;
 }
 
 .return{
@@ -68,6 +70,10 @@ body, html{
 
 .links{
   text-align: center center;
+  a{
+    color: snow;
+    font-size: x-large;
+  }
 }
 
 .fase_link{
@@ -78,11 +84,6 @@ body, html{
   border: 5px solid #0f4657;
   border-radius: 5px;
   min-height: 350px;
-  a{
-    color: snow;
-    font-size: x-large;
-    margin-top: 40%;
-  }
 }
 
 .fase_link:hover{

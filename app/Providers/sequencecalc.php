@@ -291,7 +291,7 @@ if($speed_check_back_line > 0){
     } else {
         $outfit1_calc->back_line_winner=1;
         $battle_lines += [21=>$username1." wins the battle on the back line"];
-    }dd($battlecode);
+    }
 }   else {
     $battle_lines += [20=>"Both players are equally slow in the back line"];
     //calculation if both players have same speed on the back line

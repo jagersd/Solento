@@ -46,13 +46,14 @@
 @if (count($userraces) > 0)
 <div class="container">
     <div class="row flex-column flex-md-row links">
-        <div class="fase_link text-center col-3" style="background-image: url('/images/unit_catelogue.png')"><a href="/unit_store">Unit Catelogue</a></div>
+        <a href="/unit_store" class="fase_link text-center col-3" style="background-image: url('/images/unit_catelogue.png')">Unit Catelogue</a>
 
-        <div class="fase_link text-center col-3" style="background-image: url('/images/item_catelogue.png')"><a href="/item_store">Item Catelogue</a></div>
+        <a href="/item_store" class="fase_link text-center col-3" style="background-image: url('/images/item_catelogue.png')">Item Catelogue</a>
 
-        <div class="fase_link text-center col-3" style="background-image: url('/images/check_outfit.png')"><a href="/outfit">Check outfit</a></div>
+        <a href="/outfit" class="fase_link text-center col-3" style="background-image: url('/images/check_outfit.png')">Check Outfit</a>
 
-        <div class="fase_link text-center col-3" style="background-image: url('/images/to_battle.png')"><a href="/battle/prepare">To Battle!</a></div>
+        <a href="/battle/prepare" class="fase_link text-center col-3" style="background-image: url('/images/to_battle.png')">To Battle!</a>
+
     </div>
 </div>
 @endif

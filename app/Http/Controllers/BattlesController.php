@@ -106,7 +106,7 @@ class BattlesController extends Controller
                     'outfit_weight'=>$won_unit->outfit_weight,
                     'sell_price'=>$won_unit->cost / 2
                 ]);
-            }
+            } else $won_unit = '';
 
             //add item to user_item
             if($battle_result->awarded_item != null){
@@ -115,7 +115,7 @@ class BattlesController extends Controller
                     'user_id'=>$battle_result->result,
                     'item_id'=>$won_item->id    
                 ]);
-            }
+            } else $won_item = '';
 
 
             battle::where('battlecode',$battle_result->battlecode)->update(['claimed'=>1]);

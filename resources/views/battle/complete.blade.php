@@ -2,7 +2,9 @@
 
 @section('content')
 
-<a href="/home"><--- Go back home</a>
+<span class="return">
+    <a href="/home">Go Back</a>
+</span><br><br>
 
 <div class="container">
     <div class="row justify-content-center">

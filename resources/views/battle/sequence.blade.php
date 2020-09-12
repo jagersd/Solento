@@ -108,9 +108,9 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" id="resultButton">
     <div class="row flex-column flex-md-row result_button">
-        @if (auth::user()->id == $battle_details->result)
+        @if (auth::user()->id == DB::table('battles')->where('battlecode',$battlecode)->first('result')->result)
         <div class="col-12">
             <a href="/battle/complete/{{$complete_code}}"><button type="submit" class="btn btn-success">Claim loot!</button></a>
         </div>
