@@ -2187,22 +2187,12 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
-.form-control::-webkit-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -10932,6 +10922,22 @@ html {
 
 .light-header {
   color: snow;
+}
+
+canvas {
+  z-index: 20;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 30vw;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  canvas {
+    max-width: 90vw;
+  }
 }
 
 /*global-animation*/

@@ -11,14 +11,17 @@
             <div class="card">
                 <div class="card-header">{{$unit->name}}</div>
                 <p>{{$unit->description}}</p>
-                <ul>
-                    <li>HP: {{$unit->hp}}</li>
-                    <li>Strenght: {{$unit->strength}}</li>
-                    <li>Armor: {{$unit->armor}}</li>
-                    <li>Intellect: {{$unit->intellect}}</li>
-                    <li>Magic defence: {{$unit->magic_defence}}</li>
-                    <li>Speed: {{$unit->speed}}</li>
+                <ul style="display: none;">
+                    <li id="stat_hp">{{$unit->hp}}</li>
+                    <li id="stat_strength">{{$unit->strength}}</li>
+                    <li id="stat_armor">{{$unit->armor}}</li>
+                    <li id="stat_intellect">{{$unit->intellect}}</li>
+                    <li id="stat_magic_defence">{{$unit->magic_defence}}</li>
+                    <li id="stat_speed">{{$unit->speed}}</li>
                 </ul>
+                <div id="unitStoreChart">
+                <canvas id="statChart" width="400" height="400"></canvas>
+                </div>
                 <hr>
                 <p>Special traits:</p>
                 @if(count($unit->abilities)>0)
@@ -73,3 +76,8 @@
 
 
 @endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('js/charts.js') }}" charset="utf-8" defer></script>
+@stop
