@@ -18,7 +18,6 @@ $(document).ready(function(){
 		pxs[i].reset();
 	}
 	setInterval(draw,rint);
-	setInterval(draw,rint2);
 
 });
 

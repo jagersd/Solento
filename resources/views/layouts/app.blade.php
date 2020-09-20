@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('page_style')
 </head>
 <body>
     <div id="app">
@@ -85,7 +86,10 @@
         <main class="py-4">
             <canvas id="pixie"></canvas>
             @yield('content')
+            @yield ('scripts')
         </main>
     </div>
+
+        
 </body>
 </html>

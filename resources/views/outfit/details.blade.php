@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page_style')
+<link href="{{ asset('css/outfit_details.css') }}" rel="stylesheet">
+@stop
+
 @section('content')
 
 <span class="return">
@@ -16,6 +20,7 @@
         <div class="col-md-4" id="all-stats">
             <div class="card">
             <h3 class="card-header">{{$unit_stats->name}}</h3>
+            <!-- Stats section -->
                 <div class="card-body">
                     <p>HP: {{$unit_stats->base_details->hp}} + {{ $item1->item_hp + $item2->item_hp + $item3->item_hp}} </p>
                     <p>Strength: {{$unit_stats->base_details->strength}} + {{ $item1->item_stength + $item2->item_stength + $item3->item_stength}}</p>
@@ -24,46 +29,41 @@
                     <p>Magic defence: {{$unit_stats->base_details->magic_defence}} + {{ $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence}}</p>
                     <p>Speed: {{$unit_stats->base_details->speed}} + {{ $item1->item_speed + $item2->item_speed + $item3->item_speed}}</p>
                     <p>Can be sold for: {{$unit_stats->sell_price}} gold</p>
+                    <button class="btn btn-primary" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
                 </div>
             </div>
             
             <br><br>
-            <form method="POST" action="{{ action('OutfitsController@equipItems') }}">
-                {{ csrf_field() }}
+
+            <!-- Equipment section -->
                 <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
                 <div class="card">
                     <h5 class="card-header">Equipped items</h5>
                     <div class="card-body">
-                        <p>First item slot:  @if($item1) {{$item1->item_name}} @else --slot free-- @endif </p>
-                        <select id="available_item_list" name="available_item1">
-                            <option></option>
-                            @foreach ($user_items as $user_item)
-                                @if($user_item->assigned==0)
-                            <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <p>Second item slot: @if($item2) {{$item2->item_name}} @else --slot free-- @endif  </p>
-                        <select id="available_item_list" name="available_item2">
-                            <option></option>
-                            @foreach ($user_items as $user_item)
-                                @if($user_item->assigned==0)
-                                <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                        <p>Third item slot: @if($item3) {{$item3->item_name}} @else --slot free-- @endif  </p>
-                        <select id="available_item_list" name="available_item3">
-                            <option></option>
-                            @foreach ($user_items as $user_item)
-                                @if($user_item->assigned==0)
-                                <option value="{{$user_item->id}}">{{$user_item->item->item_name}}</option>
-                                @endif
-                            @endforeach
-                        </select><br>
+                        <p>Slot 1:  @if($item1->id != 0) {{$item1->item_name}} 
+                            @else <button class="btn btn-link" href="#equipModal" data-toggle="modal" type="submit" id="slot1btn">Select item</button> 
+                            @endif 
+                        </p>
+                        <p>Slot 2:  @if($item2->id != 0) {{$item2->item_name}} 
+                            @else <button class="btn btn-link" href="#equipModal" data-toggle="modal" type="submit" id="slot2btn">Select item</button> 
+                            @endif 
+                        </p>
+                        <p>Slot 3:  @if($item3->id != 0) {{$item3->item_name}} 
+                            @else <button class="btn btn-link" href="#equipModal" data-toggle="modal" type="submit" id="slot3btn">Select item</button> 
+                            @endif 
+                        </p>
+                        <form method="POST" action="{{ action('OutfitsController@unequipItems') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
+                            <button type="submit" class="btn btn-primary">Unequip all items</button><br><br>
+                        </form>
                     </div>
                 </div>
-                <br><br>
+                <br>
+            <!-- Position section -->
+            <form method="POST" action="{{ action('OutfitsController@editPosition') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
                 <div class="card">                
                     <h5 class="card-header">Position on the field or benched</h5>
                     <div class="card-body">
@@ -77,18 +77,11 @@
                             <option value="" selected disabled hidden>@if ($unit_stats->active == 1) Active @else Benched @endif</option>
                             <option value="1">Active</option>
                             <option value="0">Bench</option>
-                        </select>   
-
+                        </select>
+                        <br><br>   
+                        <button type="submit" class="btn btn-primary">Lock position</button>
                     </div>
-                </div><br>
-                <button type="submit" class="btn btn-primary">Lock configuration</button>
-                <br><br>
-                <form method="POST" action="{{ action('OutfitsController@unequipItems') }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
-                    <button type="submit" class="btn btn-primary">Unequip all items</button><br><br>
-                </form>
-                <button class="btn btn-primary" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
+                </div>   
             </form>
             <br>
 
@@ -108,6 +101,7 @@
     </div>
     <br>
     <br>
+    <!-- Traits sections -->
     <div class="row flex-column flex-md-row">
         <div class="col-6">
             <h4 class="card-header">Special traits by nature</h4>
@@ -135,6 +129,40 @@
     </div>
 </div>
 
+<!-- Equip items model -->
+<div class="modal" id="equipModal" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+
+            <!-- Modal root -->
+            <div class="m-header"> 
+                <h2 class="myModalLabel2"> Which item would suit best in this slot? </h2> 
+            </div> 
+
+            <!-- Modal footer -->
+            <div class="footer"> 
+                <form method="POST" action="{{ action('OutfitsController@equipItems') }}">
+                {{ csrf_field() }}
+                <input type="hidden" value="{{$unit_stats->id}}" name="outfit_id">
+                <div class="form-check">
+                @foreach ($user_items as $user_item)
+                    @if ($user_item->assigned == 0)
+                    <input class="form-check-input position-static" type="radio" id="item_input" name="" value="{{$user_item->id}}">{{$user_item->item->item_name}}<br>     
+                    @endif
+                @endforeach
+                </div>
+                
+                <button class="btn btn-primary" type="submit">Confirm</button>
+                <button class="btn btn-dark" data-toggle="modal" data-dismiss="modal">Return</button>
+                </form>
+            </div> 
+
+        </div> 
+    </div> 
+</div>
+
+
+<!-- Sell unit Modal root -->
 <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
     <div class="modal-dialog"> 
         <div class="modal-content"> 
@@ -151,12 +179,17 @@
                 <input type="hidden" id="outfit_id" name="outfit_id" value="{{$unit_stats->id}}">
                 <input type="hidden" id="sell_price" name="sell_price" value="{{$unit_stats->sell_price}}">
                 <button class="btn btn-dark" type="submit">Confirm</button>
-                <button class="btn btn-dark" data-toggle="modal" data-dismiss="modal" >Return</button>
+                <button class="btn btn-dark" data-toggle="modal" data-dismiss="modal">Return</button>
                 </form>
             </div> 
 
         </div> 
     </div> 
-</div> 
+</div>
 
 @endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/equipItems.js') }}" charset="utf-8" defer></script>
+@stop
+

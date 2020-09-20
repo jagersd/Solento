@@ -89,9 +89,18 @@ class OutfitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editPosition(Request $request)
     {
-        //
+        if($request->position_on_field){
+            outfit::where('id', $request->outfit_id)
+            ->update(['position'=>$request->position_on_field]);
+        }
+
+        if(isset($request->active_inactive)){
+            outfit::where('id', $request->outfit_id)
+            ->update(['active'=>$request->active_inactive]);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -161,16 +170,6 @@ class OutfitsController extends Controller
 
             user_item::where('id',$request->available_item3)
             ->update(['assigned'=>1]);
-        }
-
-        if($request->position_on_field){
-            outfit::where('id', $request->outfit_id)
-            ->update(['position'=>$request->position_on_field]);
-        }
-
-        if(isset($request->active_inactive)){
-            outfit::where('id', $request->outfit_id)
-            ->update(['active'=>$request->active_inactive]);
         }
         return redirect()->back();
     }
