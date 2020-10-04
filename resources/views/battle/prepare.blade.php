@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<span class="return">
+    <a href="/home">Go Back</a>
+</span>
 <div class="container">
     <div class="row">
         <div class="col-12">

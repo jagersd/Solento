@@ -30,7 +30,7 @@
                     <li id="stat_magic_defence">{{$unit_stats->base_details->magic_defence}},{{$unit_stats->base_details->magic_defence + $item1->item_magic_defence + $item2->item_magic_defence + $item3->item_magic_defence}}</li>
                     <li id="stat_speed">{{$unit_stats->base_details->speed}},{{$unit_stats->base_details->speed + $item1->item_speed + $item2->item_speed + $item3->item_speed}}</li>
                     </ul>
-                    <canvas id="statChart" width="400" height="400"></canvas>
+                    <canvas class="chart" id="statChart" width="400" height="400"></canvas>
                     <p>Can be sold for: {{$unit_stats->sell_price}} gold</p>
                     <button class="btn btn-primary" href="#signupModal" data-toggle="modal" type="submit"  id="confirmation_request">Sell unit</button>
                 </div>
@@ -194,7 +194,6 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('js/equipItems.js') }}" charset="utf-8" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/chartUnitDetail.js') }}" charset="utf-8" defer></script>
 @stop

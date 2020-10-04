@@ -6,10 +6,6 @@ let statINT = document.getElementById('stat_intellect').innerText.split(',');
 let statMD = document.getElementById('stat_magic_defence').innerText.split(',');
 let statSP = document.getElementById('stat_speed').innerText.split(',');
 
-
-console.log(typeof statHP[0]);
-
-
   
 let radarChart = new Chart(statChart, {
   type: 'radar',
@@ -46,3 +42,45 @@ let radarChart = new Chart(statChart, {
     borderJoinStyle:"round"
   }
 });
+
+/*
+|
+Equip items section
+|
+*/
+
+const button1 = document.getElementById("slot1btn");
+const button2 = document.getElementById("slot2btn");
+const button3 = document.getElementById("slot3btn");
+
+let toChange = document.querySelectorAll("#item_input");
+
+if(button1){
+    button1.addEventListener("click", function(){
+
+        let i;
+        for (i=0; i < toChange.length; i++){
+            toChange[i].setAttribute("name", "available_item1")
+        }
+    });
+}
+
+if(button2){
+    button2.addEventListener("click", function(){
+
+        let i;
+        for (i=0; i < toChange.length; i++){
+            toChange[i].setAttribute("name", "available_item2")
+        }
+    });
+}
+
+if(button3){
+    button3.addEventListener("click", function(){
+
+        let i;
+        for (i=0; i < toChange.length; i++){
+            toChange[i].setAttribute("name", "available_item3")
+        }
+    });
+}

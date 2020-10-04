@@ -4,10 +4,17 @@
 <span class="return">
     <a href="/home">Go Back</a>
 </span><br><br>
+
+
+
 <div class="container">
-    <div class="row">
+    <div class="row flex-column">
         <div class="col-12 text-center">
+            @if ($units->sum('outfit_weight') > $max_outfit)
+            <h4 class="light-header" style="color:crimson;">Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            @else
             <h4 class="light-header">Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            @endif
             <hr>
         </div>
     </div>
@@ -15,8 +22,8 @@
 <br>
 <br>
 <div class="container">
-    <div class="row">
-        <div class="col-6">
+    <div class="row flex-column flex-md-row">
+        <div class="col-md-6">
             <h2 class="light-header">Front line</h2>
             @foreach ($units as $unit)
                 @if ($unit->position == 1)
@@ -24,9 +31,9 @@
                     <div class="card">
                         <div class="card-header outfit-unit">{{$unit->name}} <button class="btn btn-dark btn-sm" href="#signupModal{{$unit->id}}" data-toggle="modal" type="submit"  id="confirmation_request">Change unit name</button></div>
                         <a href="{{url('outfit/details',$parameter)}}" class="dark-list-group-item list-group-item-action">
-                            Class: {{$unit->base_details->name}}<br>
-                            Race: {{$unit->base_details->race->name}}<br>
-                            Exp points: {{$unit->exp}}    <br><br>
+                            <p id="baseUnitName">{{$unit->base_details->name}}</p>
+                            <p id="factionName">{{$unit->base_details->race->name}}</p>
+                            Exp points: {{$unit->exp}}<br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
                     </div>
@@ -40,9 +47,9 @@
                     <div class="card">
                         <div class="card-header outfit-unit">{{$unit->name}} <button class="btn btn-dark btn-sm" href="#signupModal{{$unit->id}}" data-toggle="modal" type="submit"  id="confirmation_request">Change unit name</button></div>
                         <a href="{{url('outfit/details',$parameter)}}" class="dark-list-group-item list-group-item-action">
-                            Class: {{$unit->base_details->name}}<br>
-                            Race: {{$unit->base_details->race->name}}<br>
-                            Exp points: {{$unit->exp}}    <br><br>
+                            <p id="baseUnitName">{{$unit->base_details->name}}</p>
+                            <p id="factionName">{{$unit->base_details->race->name}}</p>
+                            Exp points: {{$unit->exp}}<br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
                     </div>
@@ -56,9 +63,9 @@
                     <div class="card">
                         <div class="card-header outfit-unit">{{$unit->name}} <button class="btn btn-dark btn-sm" href="#signupModal{{$unit->id}}" data-toggle="modal" type="submit"  id="confirmation_request">Change unit name</button></div>
                         <a href="{{url('outfit/details',$parameter)}}" class="dark-list-group-item list-group-item-action">
-                            Class: {{$unit->base_details->name}}<br>
-                            Race: {{$unit->base_details->race->name}}<br>
-                            Exp points: {{$unit->exp}}    <br><br>
+                            <p id="baseUnitName">{{$unit->base_details->name}}</p>
+                            <p id="factionName">{{$unit->base_details->race->name}}</p>
+                            Exp points: {{$unit->exp}}<br>
                             Geared up: @if ($unit->item1_id !== 0 OR $unit->item2_id !==0 OR $unit->item3_id !==0) yes @else no @endif  
                         </a>
                     </div>
@@ -66,7 +73,9 @@
                 @endif 
             @endforeach
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
+            <h4 class="light-header">Faction mix</h4>
+            <canvas class="chart" id="factionChart" width="400" height="400"></canvas>
             <h4 class="light-header">Unequipped items:</h4>
             @foreach ($user_items as $user_item)
             @if($user_item->assigned==0)
@@ -93,7 +102,7 @@
 </div>
 
 
-<!--POP-UP MODEL-->
+<!--CHANGE NAME POP-UP MODEL-->
 @foreach ($units as $unit)
 <div class="modal" id="signupModal{{$unit->id}}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
     <div class="modal-dialog"> 
@@ -121,10 +130,11 @@
 </div> 
 @endforeach
 
-
-
-
-
-
-
 @endsection
+
+@section('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+<script type="text/javascript" src="{{ asset('js/chartOutfit.js') }}" charset="utf-8" defer></script>
+@stop

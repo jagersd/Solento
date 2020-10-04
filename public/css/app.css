@@ -10924,7 +10924,7 @@ html {
   color: snow;
 }
 
-canvas {
+.chart {
   z-index: 20;
   padding-left: 0;
   padding-right: 0;
@@ -10935,7 +10935,7 @@ canvas {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  canvas {
+  .chart {
     max-width: 90vw;
   }
 }

@@ -25,11 +25,12 @@ class BattlesController extends Controller
         $outfit_overview = outfit::where('user_id' , auth::user()->id)->where('active',1)->where('deleted',0)->get(['position','name']);
         $outfit_weight = outfit::where('user_id' , auth::user()->id)->where('active', 1)->where('deleted',0)->sum('outfit_weight');
         
-        if($outfit_weight > auth::user()->stock->first('max_outfit')){
-            return view('/home');
-        }
-
-        return view('battle/prepare', compact('outfit_overview'));
+        
+        if($outfit_weight < auth::user()->stock->first('max_outfit')){
+            return redirect()->action('OutfitsController@index');
+        } else{
+            return view('battle/prepare', compact('outfit_overview'));
+        }  
     }
 
     /**
