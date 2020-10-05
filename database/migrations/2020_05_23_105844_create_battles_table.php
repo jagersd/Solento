@@ -24,6 +24,7 @@ class CreateBattlesTable extends Migration
             $table->integer('awarded_unit')->nullable();
             $table->integer('awarded_item')->nullable();
             $table->integer('awarded_gold')->nullable();
+            $table->integer('field_id')->default(1);
             $table->timestamps();
         });
     }

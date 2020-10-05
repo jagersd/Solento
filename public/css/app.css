@@ -10895,6 +10895,25 @@ html {
   transition: 1s;
 }
 
+#left-nav-card {
+  position: fixed;
+  top: 30vh;
+  z-index: 99;
+  background-color: snow;
+  opacity: 0.8;
+  border-radius: 5px;
+  border-right: 10px double #ddcdcd;
+  left: -160px;
+  min-height: 40vh;
+  transition: 500ms;
+}
+
+#left-nav-card ul {
+  padding: 15px;
+  list-style: none;
+  font-weight: bold;
+}
+
 .card {
   border-radius: 5px;
   color: #0f4657;

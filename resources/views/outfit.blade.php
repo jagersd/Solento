@@ -3,17 +3,26 @@
 @section('content')
 <span class="return">
     <a href="/home">Go Back</a>
-</span><br><br>
+</span><br>
 
-
+<div class="statGraphSource" style="display: none">
+<ul>
+    <li id="outfitHP">{{$outfit_stats['hp']}}</li>
+    <li id="outfitStrength">{{$outfit_stats['strength']}}</li>
+    <li id="outfitArmor">{{$outfit_stats['armor']}}</li>
+    <li id="outfitIntellect">{{$outfit_stats['intellect']}}</li>
+    <li id="outfitMagicDefence">{{$outfit_stats['magic_defence']}}</li>
+    <li id="outfitSpeed">{{$outfit_stats['speed']}}</li>
+</ul>
+</div>
 
 <div class="container">
     <div class="row flex-column">
         <div class="col-12 text-center">
-            @if ($units->sum('outfit_weight') > $max_outfit)
-            <h4 class="light-header" style="color:crimson;">Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            @if ($active_weight > $max_outfit)
+            <h4 class="light-header" style="color:crimson;">Active outfit size: {{$active_weight}} / {{$max_outfit}}</h4>
             @else
-            <h4 class="light-header">Active outfit size: {{$units->sum('outfit_weight')}} / {{$max_outfit}}</h4>
+            <h4 class="light-header">Active outfit size: {{$active_weight}} / {{$max_outfit}}</h4>
             @endif
             <hr>
         </div>
@@ -24,7 +33,7 @@
 <div class="container">
     <div class="row flex-column flex-md-row">
         <div class="col-md-6">
-            <h2 class="light-header">Front line</h2>
+            <h4 class="light-header">Front line</h4>
             @foreach ($units as $unit)
                 @if ($unit->position == 1)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -40,7 +49,7 @@
                     <br>  
                 @endif 
             @endforeach
-            <h2 class="light-header">Army center</h2>
+            <h4 class="light-header">Army center</h4>
             @foreach ($units as $unit)
                 @if ($unit->position == 2)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -56,7 +65,7 @@
                     <br>   
                 @endif 
             @endforeach
-            <h2 class="light-header">Firing range and support</h2>
+            <h4 class="light-header">Firing range and support</h4>
             @foreach ($units as $unit)
                 @if ($unit->position == 3)
                     <?php $parameter =['id' =>$unit->id,]; $parameter= Crypt::encrypt($parameter);?>
@@ -74,14 +83,16 @@
             @endforeach
         </div>
         <div class="col-md-6">
+            <h4 class="light-header">Outfit balance</h4>
+            <canvas class="chart" id="outfitStatChart" width="400" height="400"></canvas>
             <h4 class="light-header">Faction mix</h4>
             <canvas class="chart" id="factionChart" width="400" height="400"></canvas>
             <h4 class="light-header">Unequipped items:</h4>
             @foreach ($user_items as $user_item)
             @if($user_item->assigned==0)
             <div class="card">
-                <div class="card-header">                    
-                    {{$user_item->item->item_name}}        
+                <div class="item-list">                    
+                    <p>{{$user_item->item->item_name}}</p>
                 </div>
             </div>
             @endif
@@ -90,8 +101,8 @@
             @foreach ($user_items as $user_item)
             @if($user_item->assigned==1)
             <div class="card">
-                <div class="card-header">                    
-                    {{$user_item->item->item_name}}        
+                <div class="item-list">                    
+                    <p>{{$user_item->item->item_name}}</p>
                 </div>
             </div>
             @endif

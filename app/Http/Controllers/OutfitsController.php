@@ -22,9 +22,32 @@ class OutfitsController extends Controller
     {   
         $max_outfit = auth::user()->stock->first('max_outfit')->max_outfit;
         $units = outfit::where('user_id', auth::user()->id)->where('deleted',0)->get();
+        $active_weight= outfit::where('user_id', auth::user()->id)->where('deleted',0)->where('active',1)->sum('outfit_weight');
         $user_items = user_item::where('user_id', auth::user()->id)->get();
 
-        return view('outfit', compact('units','user_items','max_outfit'));
+        $outfit_stats = array('hp'=>0, 'strength'=>0, 'armor'=>0, 'intellect'=>0, 'magic_defence'=>0, 'speed'=>0);
+
+        foreach($units as $unit){
+            $stat_calc_array = Base_unit::where('id',$unit->id)->select('hp','armor','strength','intellect','magic_defence','speed')->first();
+            $outfit_stats['hp'] += $stat_calc_array['hp'];
+            $outfit_stats['strength'] += $stat_calc_array['strength'];
+            $outfit_stats['armor'] += $stat_calc_array['armor'];
+            $outfit_stats['intellect'] += $stat_calc_array['intellect'];
+            $outfit_stats['magic_defence'] += $stat_calc_array['magic_defence'];
+            $outfit_stats['speed'] += $stat_calc_array['speed'];
+        }
+
+        foreach($user_items as $item){
+            $stat_calc_array = Item::where('id',$item->item_id)->select('item_hp','item_armor','item_strength','item_intellect','item_magic_defence','item_speed')->first();
+            $outfit_stats['hp'] += $stat_calc_array['item_hp'];
+            $outfit_stats['strength'] += $stat_calc_array['item_strength'];
+            $outfit_stats['armor'] += $stat_calc_array['item_armor'];
+            $outfit_stats['intellect'] += $stat_calc_array['item_intellect'];
+            $outfit_stats['magic_defence'] += $stat_calc_array['item_magic_defence'];
+            $outfit_stats['speed'] += $stat_calc_array['item_speed'];
+        }
+
+        return view('outfit', compact('units','user_items','max_outfit','active_weight','outfit_stats'));
     }
 
     /**

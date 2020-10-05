@@ -89,7 +89,17 @@
             @yield ('scripts')
         </main>
     </div>
+    <div id="left-nav-card">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/home">World Story</a></li>
+                <li><a href="/home">Factions</a></li>
+                <li><a href="/home">Frontlines</a></li>
+                <li><a href="/home">Extended rulebook</a></li>
+                <li><a href="/home">Good luck, have Fun!</a></li>
+            </ul>
+    </div>
 
-        
+    <script src="{{ asset('js/layout.js') }}" defer></script>
 </body>
 </html>

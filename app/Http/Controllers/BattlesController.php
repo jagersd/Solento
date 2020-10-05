@@ -26,7 +26,7 @@ class BattlesController extends Controller
         $outfit_weight = outfit::where('user_id' , auth::user()->id)->where('active', 1)->where('deleted',0)->sum('outfit_weight');
         
         
-        if($outfit_weight < auth::user()->stock->first('max_outfit')){
+        if($outfit_weight > auth::user()->stock->first('max_outfit')){
             return redirect()->action('OutfitsController@index');
         } else{
             return view('battle/prepare', compact('outfit_overview'));
@@ -64,10 +64,13 @@ class BattlesController extends Controller
 
         if ( $joinchecker == null){
             $battlecode= substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,50);
+            $max_fields= DB::table('fields')->count();
+            $field= random_int(0,$max_fields);
 
             battle::create([
                 'player1'=>auth::user()->id,
-                'battlecode'=>$battlecode
+                'battlecode'=>$battlecode,
+                'field_id'=>$field
             ]);
             return redirect()->action('BattlesController@battle', ['battlecode'=>$battlecode]);
         } else {
