@@ -77,3 +77,13 @@ Route::get('/battle/field/{battlecode}', 'BattlesController@battle');
 Route::get('/battle/sequence/{battlecode}', 'BattlesController@sequence');
 Route::get('/battle/complete/{complete_code}', 'BattlesController@complete_sequence');
 
+/*
+|
+|Static pages
+|
+*/
+
+Route::view('/statics/world','statics.placeholder');
+Route::view('/statics/factions','statics.placeholder');
+Route::view('/statics/frontlines','statics.placeholder');
+Route::view('/statics/rules','statics.placeholder');

@@ -28,7 +28,7 @@ class OutfitsController extends Controller
         $outfit_stats = array('hp'=>0, 'strength'=>0, 'armor'=>0, 'intellect'=>0, 'magic_defence'=>0, 'speed'=>0);
 
         foreach($units as $unit){
-            $stat_calc_array = Base_unit::where('id',$unit->id)->select('hp','armor','strength','intellect','magic_defence','speed')->first();
+            $stat_calc_array = Base_unit::where('id',$unit->unit_id)->select('hp','armor','strength','intellect','magic_defence','speed')->first();
             $outfit_stats['hp'] += $stat_calc_array['hp'];
             $outfit_stats['strength'] += $stat_calc_array['strength'];
             $outfit_stats['armor'] += $stat_calc_array['armor'];
