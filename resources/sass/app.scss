@@ -269,7 +269,62 @@ body, html{
     100% {
       transform: rotate(360deg);
     }
+}
+
+/*Prepare sequence */
+
+.formation-total{
+  height:70vh;
+}
+
+.formation-section{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.formation-unit{
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  padding-top:5px;
+  padding-bottom: 5px;
+}
+
+.mobile-header{
+  display: none;
+}
+
+#btl-btn{
+  display: inline-block;
+  text-decoration: none;
+  font-size: x-large;
+  color: rgba(255,255,255,0.8);
+  width: 250px;
+  height: 250px;
+  line-height: 120px;
+  border-radius: 50%;
+  border: solid 2px rgba(255,255,255,0.8);
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+}
+
+#btl-btn:hover {
+    background: rgba(255,255,255,0.8);
+    color: rgb(22,105,131);
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .formation-total{
+    min-height: 50vh;
   }
+
+  .mobile-header{
+    display: block;
+    color:snow;
+  }
+}
 
 /*static pages*/
 

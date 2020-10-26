@@ -31,8 +31,34 @@
 <br>
 <br>
 <div class="container">
-    <div class="row flex-column flex-md-row">
-        <div class="col-md-6">
+    <div class="row flex-row-reverse">
+        <div class="col-md-6 order-md-1">
+            <h4 class="light-header">Outfit balance</h4>
+            <canvas class="chart" id="outfitStatChart" width="400" height="400"></canvas>
+            <h4 class="light-header">Faction mix</h4>
+            <canvas class="chart" id="factionChart" width="400" height="400"></canvas>
+            <h4 class="light-header">Unequipped items:</h4>
+            @foreach ($user_items as $user_item)
+            @if($user_item->assigned==0)
+            <div class="card">
+                <div class="item-list">                    
+                    <p>{{$user_item->item->item_name}}</p>
+                </div>
+            </div>
+            @endif
+            @endforeach
+            <h4 class="light-header">Equipped items:</h4>
+            @foreach ($user_items as $user_item)
+            @if($user_item->assigned==1)
+            <div class="card">
+                <div class="item-list">                    
+                    <p>{{$user_item->item->item_name}}</p>
+                </div>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        <div class="col-md-6 order-md-1">
             <h4 class="light-header">Front line</h4>
             @foreach ($units as $unit)
                 @if ($unit->position == 1)
@@ -82,33 +108,6 @@
                 @endif 
             @endforeach
         </div>
-        <div class="col-md-6">
-            <h4 class="light-header">Outfit balance</h4>
-            <canvas class="chart" id="outfitStatChart" width="400" height="400"></canvas>
-            <h4 class="light-header">Faction mix</h4>
-            <canvas class="chart" id="factionChart" width="400" height="400"></canvas>
-            <h4 class="light-header">Unequipped items:</h4>
-            @foreach ($user_items as $user_item)
-            @if($user_item->assigned==0)
-            <div class="card">
-                <div class="item-list">                    
-                    <p>{{$user_item->item->item_name}}</p>
-                </div>
-            </div>
-            @endif
-            @endforeach
-            <h4 class="light-header">Equipped items:</h4>
-            @foreach ($user_items as $user_item)
-            @if($user_item->assigned==1)
-            <div class="card">
-                <div class="item-list">                    
-                    <p>{{$user_item->item->item_name}}</p>
-                </div>
-            </div>
-            @endif
-            @endforeach
-        </div>
-
     </div>
 </div>
 
