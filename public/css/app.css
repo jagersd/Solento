@@ -11254,6 +11254,7 @@ html {
 #seq-unit {
   margin: 0;
   padding-left: 5px;
+  padding-right: 5px;
 }
 
 .seq-formation {
@@ -11264,6 +11265,14 @@ html {
           animation-delay: 4s;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
+}
+
+#result-line {
+  opacity: 0;
+  -webkit-animation: slowshow 2s ease-in-out 1 forwards;
+          animation: slowshow 2s ease-in-out 1 forwards;
+  -webkit-animation-delay: 14s;
+          animation-delay: 14s;
 }
 
 #resultButton {
@@ -11310,13 +11319,15 @@ html {
   }
 }
 
-#ability_log {
-  display: none;
-}
-
 #showcase {
   padding-top: 30px;
   background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.battle-logs {
+  display: block;
+  transition: 1s;
 }
 
 #log-button {

@@ -5,7 +5,7 @@
 <!-- Sequence container -->
 <div class="sequence-bg">
     <!-- Actual Sequence -->
-    <div class="container" id="showcase" style="background-image:radial-gradient(transparent,#004656 40%), url('/images/fields/{{$field->background_file}}');">
+    <div class="container" id="showcase" style="background-image:radial-gradient(transparent,#004656 50%), url('/images/fields/{{$field->background_file}}');">
         <div class="row align-items-center">
             <div class="col-4 text-left">
                 <h4 id="seq-username">{{$username1}}</h4>
@@ -54,14 +54,16 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row align-items-center">
-            <div class="col-12 text-center">
-                @foreach ($battle_logs as $log)
-                    @if(strpos($log, "Complete battle logs") === false)
-                    <p id="ability_log">{{$log}}</p>
-                    @endif
-                @endforeach
+            <div class="col-3 text-center"></div>
+            <div class="col-6 text-center">
+                @for($i=0; $i < count($battle_logs); $i++)
+                    <p class="battle-logs"  id="ability_log{{$i}}"><b>{{$battle_logs[$i]}}</b></p>
+                @endfor
+                <h5 id="result-line">{{$battle_lines[100]}}</h5>
             </div>
+            <div class="col-3 text-center"></div>
         </div>
     </div>
 

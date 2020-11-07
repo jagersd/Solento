@@ -13,7 +13,32 @@ let player2 = document.getElementById("player2").innerHTML;
 /*
 Sequencing
 */
+let battleLogCount=document.getElementsByClassName("battle-logs").length;
+for (let i=0; i < battleLogCount; i++){
+    let log=document.getElementById('ability_log'+i);
+    log.style.opacity=0;
+    log.style.color='crimson';
+    let timeout = i * 2000;
 
+    if(log.style.opacity== 0 && log.innerText.includes('Complete') == false ){
+        setTimeout(function(){
+            log.style.opacity=1;
+        }, timeout);
+        setTimeout(function(){
+            log.style.opacity=0;
+        }, timeout*2);
+    }
+}
+
+function showHide(element){
+    element.style.display= 'none';
+    element.style.transition= '2s';
+    if (element.style.display == 'none'){
+        setTimeout(function() {
+            element.style.display = 'block';
+        }, 5000);
+    }
+}
 
 /*
 View log button
