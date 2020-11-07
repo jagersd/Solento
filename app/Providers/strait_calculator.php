@@ -6,7 +6,7 @@ function aoes1($self, $opponant, &$battle_logs){
 
     if($chance > 75){
         $self->front_line["hp"] -= 35;
-        $log="Wreckless Cannons hit its own allies for 35 hp";
+        $log="$self->playername's own units where hit by wreckless cannons for 35hp";
         array_push($battle_logs,$log);
     } 
 }
@@ -47,12 +47,12 @@ function aoestat2($self, $opponant, &$battle_logs){
     switch($position_check){
         case 1:
             $self->front_line["strength"]-=40;
-            $log = 'The pine defender is not able to attack';
+            $log = $self->playername."'s Pine defender is not able to attack";
             array_push($battle_logs,$log);
         break;
         case 2:
             $self->center_line["strength"]-=40;
-            $log = 'The pine defender is not able to attack';
+            $log = $self->playername."'s Pine defender is not able to attack";
             array_push($battle_logs,$log);
         break;
     }
@@ -71,7 +71,7 @@ function aoestat3($self, $opponant, &$battle_logs){
         $boost= 35 * count($self->outfit_ids);
         $self->front_line["magic_defence"]+= ($boost / 3);
         $self->center_line["magic_defence"]+= ($boost / 3);
-        $log = 'Boosting shouts bumped up the magic defence of the army by '.$boost;
+        $log = "Boosting shouts bumped up the magic defence of ".$self->playername."'s army by ".$boost;
         array_push($battle_logs,$log);
     }
 

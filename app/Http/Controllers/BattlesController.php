@@ -45,12 +45,15 @@ class BattlesController extends Controller
         $username2 = DB::table('users')->where('id',$battle_details->player2)->first()->name;
         $outfit1 = outfit::where('user_id',$battle_details->player1)->where('active',1)->where('deleted',0)->get();
         $outfit2 = outfit::where('user_id',$battle_details->player2)->where('active',1)->where('deleted',0)->get();
+        $faction1 = DB::table('races')->leftJoin('user_races','races.id','=','user_races.race_id')->where('user_races.user_id',$battle_details->player1)->first()->name;
+        $faction2 = DB::table('races')->leftJoin('user_races','races.id','=','user_races.race_id')->where('user_races.user_id',$battle_details->player2)->first()->name;
         $complete_code = substr(str_shuffle('123456789'),1,5);
+        $field = DB::table('fields')->where('id',$battle_details->field_id)->first();
         battle::where('battlecode',$battlecode)->update(['closed'=>$complete_code]);
 
         include_once(app_path() . '/Providers/sequencecalc.php');
 
-        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs','complete_code'));
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs','complete_code','field','faction1','faction2'));
     }
 
     /**
@@ -65,7 +68,7 @@ class BattlesController extends Controller
         if ( $joinchecker == null){
             $battlecode= substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,50);
             $max_fields= DB::table('fields')->count();
-            $field= random_int(0,$max_fields);
+            $field= random_int(1,$max_fields);
 
             battle::create([
                 'player1'=>auth::user()->id,

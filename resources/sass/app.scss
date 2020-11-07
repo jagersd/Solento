@@ -335,8 +335,100 @@ body, html{
   
 /* Battlesequence CSS */
 
-.vsdevider{
-  background-color: black;
+.sequence-bg{
+  background: rgb(131,22,22);
+  background: linear-gradient(270deg, rgba(131,22,22,1) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(131,22,22,1) 100%);
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 0.5s;
   color: snow;
+  margin-top: -30px;
+  margin-bottom: -40px;
+  min-height: 100vh;
+}
+
+#seq-username{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 2s;
+}
+
+#seq-faction{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 2.5s;
+}
+
+#seq-unit{
+  margin:0;
+  padding-left:5px;
+}
+
+.seq-formation{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 4s;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 10px;
+}
+
+#resultButton{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 15s;
+}
+
+#field-name{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 4s;
+}
+
+#field-desc{
+  opacity: 0;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 4.5s;
+}
+
+@keyframes slowshow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#ability_log{
+  display:none;
+}
+
+#showcase{
+  padding-top: 30px;
+  background-repeat: no-repeat;
+}
+
+#log-button{
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(255,255,255,0.8);
+  width: 180px;
+  height: 180px;
+  line-height: 120px;
+  border-radius: 50%;
+  border: solid 2px rgba(255,255,255,0.8);
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+}
+
+#log-button:hover {
+    background: rgba(255,255,255,0.8);
+    color: rgb(22,105,131);
+}
+
+#complete-logs{
+  display: none;
+}
+
+.vsdevider{
+  color: snow;
+  border: 1px solid snow;
+  border-radius: 10px;
 }
 
