@@ -337,7 +337,7 @@ body, html{
 
 .sequence-bg{
   background: rgb(131,22,22);
-  background: linear-gradient(270deg, rgba(131,22,22,1) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(131,22,22,1) 100%);
+  background: linear-gradient(270deg, rgba(200,22,22,0.6) 0%, rgba(15,70,87,1) 15%, rgba(15,70,87,1) 85%, rgba(200,22,22,0.6) 100%);
   opacity: 0;
   animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 0.5s;
   color: snow;
@@ -371,12 +371,12 @@ body, html{
 
 #result-line{
   opacity: 0;
-  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 14s;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 16s;
 }
 
 #resultButton{
   opacity: 0;
-  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 15s;
+  animation: slowshow 2s ease-in-out 1 forwards; animation-delay: 17s;
 }
 
 #field-name{
@@ -398,23 +398,70 @@ body, html{
   }
 }
 
+#flavour-line1{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 5s;
+}
+
+#flavour-line2{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 9s;
+}
+
+#flavour-line3{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 13s;
+}
+
+#flavour-line4{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 7s;
+}
+
+#flavour-line5{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 11s;
+}
+
+#flavour-line6{
+  opacity: 0;
+  animation: hideshowhide 3s ease-in-out 1 forwards; animation-delay: 15s;
+}
+
+@keyframes hideshowhide {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 #showcase{
   padding-top: 30px;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .battle-logs{
   display: block;
   transition: 1s;
+  font-size: larger;
 }
 
 #log-button{
   display: inline-block;
   text-decoration: none;
   color: rgba(255,255,255,0.8);
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   line-height: 120px;
   border-radius: 50%;
   border: solid 2px rgba(255,255,255,0.8);

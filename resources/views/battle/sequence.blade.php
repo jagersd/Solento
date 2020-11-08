@@ -5,7 +5,7 @@
 <!-- Sequence container -->
 <div class="sequence-bg">
     <!-- Actual Sequence -->
-    <div class="container" id="showcase" style="background-image:radial-gradient(transparent,#004656 50%), url('/images/fields/{{$field->background_file}}');">
+    <div class="container" id="showcase" style="background-image:radial-gradient(transparent,#004656 30%), url('/images/fields/{{$field->background_file}}');">
         <div class="row align-items-center">
             <div class="col-4 text-left">
                 <h4 id="seq-username">{{$username1}}</h4>
@@ -32,6 +32,8 @@
                 <br><br>
                 <h4 id="field-name">{{$field->name}}</h4>
                 <h5 id="field-desc"><i>{{$field->description}}</i></h5>
+                <br>
+                <h5 id="result-line">{{$battle_lines[100]}}</h5>
             </div>
             <div class="col-4 text-right">
                 <h4 id="seq-username">{{$username2}}</h4>
@@ -56,14 +58,22 @@
         </div>
         <br>
         <div class="row align-items-center">
-            <div class="col-3 text-center"></div>
+            <div class="col-3 text-center">
+                <p id="flavour-line1"><i>{{$battle_lines[$flavour_line_index['1']]}}</i></p>
+                <p id="flavour-line2"><i>{{$battle_lines[$flavour_line_index['2']]}}</i></p>
+                <p id="flavour-line3"><i>{{$battle_lines[$flavour_line_index['3']]}}</i></p>
+            </div>
             <div class="col-6 text-center">
                 @for($i=0; $i < count($battle_logs); $i++)
                     <p class="battle-logs"  id="ability_log{{$i}}"><b>{{$battle_logs[$i]}}</b></p>
                 @endfor
-                <h5 id="result-line">{{$battle_lines[100]}}</h5>
+                
             </div>
-            <div class="col-3 text-center"></div>
+            <div class="col-3 text-center">
+                <p id="flavour-line4"><i>{{$battle_lines[$flavour_line_index['4']]}}</i></p>
+                <p id="flavour-line5"><i>{{$battle_lines[$flavour_line_index['5']]}}</i></p>
+                <p id="flavour-line6"><i>{{$battle_lines[$flavour_line_index['6']]}}</i></p>
+            </div>
         </div>
     </div>
 
@@ -82,7 +92,7 @@
         </div>
         <div class="row flex-column flex-md-row">
             <div class="col-12 text-center">
-                <br><br>
+                <br>
                 <button type="submit" class="btn" id="log-button">Toggle complete logs</button>
             </div>
         </div>

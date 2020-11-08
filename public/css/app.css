@@ -11223,7 +11223,7 @@ html {
 
 .sequence-bg {
   background: #831616;
-  background: linear-gradient(270deg, #831616 0%, #0f4657 15%, #0f4657 85%, #831616 100%);
+  background: linear-gradient(270deg, rgba(200, 22, 22, 0.6) 0%, #0f4657 15%, #0f4657 85%, rgba(200, 22, 22, 0.6) 100%);
   opacity: 0;
   -webkit-animation: slowshow 2s ease-in-out 1 forwards;
           animation: slowshow 2s ease-in-out 1 forwards;
@@ -11271,16 +11271,16 @@ html {
   opacity: 0;
   -webkit-animation: slowshow 2s ease-in-out 1 forwards;
           animation: slowshow 2s ease-in-out 1 forwards;
-  -webkit-animation-delay: 14s;
-          animation-delay: 14s;
+  -webkit-animation-delay: 16s;
+          animation-delay: 16s;
 }
 
 #resultButton {
   opacity: 0;
   -webkit-animation: slowshow 2s ease-in-out 1 forwards;
           animation: slowshow 2s ease-in-out 1 forwards;
-  -webkit-animation-delay: 15s;
-          animation-delay: 15s;
+  -webkit-animation-delay: 17s;
+          animation-delay: 17s;
 }
 
 #field-name {
@@ -11319,23 +11319,109 @@ html {
   }
 }
 
+#flavour-line1 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#flavour-line2 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 9s;
+          animation-delay: 9s;
+}
+
+#flavour-line3 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 13s;
+          animation-delay: 13s;
+}
+
+#flavour-line4 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+}
+
+#flavour-line5 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 11s;
+          animation-delay: 11s;
+}
+
+#flavour-line6 {
+  opacity: 0;
+  -webkit-animation: hideshowhide 3s ease-in-out 1 forwards;
+          animation: hideshowhide 3s ease-in-out 1 forwards;
+  -webkit-animation-delay: 15s;
+          animation-delay: 15s;
+}
+
+@-webkit-keyframes hideshowhide {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideshowhide {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 #showcase {
   padding-top: 30px;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 
 .battle-logs {
   display: block;
   transition: 1s;
+  font-size: larger;
 }
 
 #log-button {
   display: inline-block;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   line-height: 120px;
   border-radius: 50%;
   border: solid 2px rgba(255, 255, 255, 0.8);

@@ -389,4 +389,74 @@ function gold_reward($battlecode){
     ]);
 }
 
+/*
+|
+|
+flavour text
+|
+|
+*/
+
+//outfit count line
+if(count($outfit1)>count($outfit2)){
+    $battle_lines[101] = $outfit1_calc->playername."'s army is larger than ".$outfit2_calc->playername."'s is, but is it stronger?";
+    }   elseif(count($outfit1)>count($outfit2)){
+        $battle_lines[101] = $outfit2_calc->playername."'s army is larger than ".$outfit1_calc->playername."'s is, but is it stronger?";
+    }   else{
+        $battle_lines[101] = "Both parties brought the same amount of units, but who picked out the best combination?";
+}
+
+
+
+//front guard hp line
+if($outfit1_calc->front_line['hp'] > $outfit2_calc->front_line['hp']){
+    $battle_lines[102] = "the HP of ".$outfit1_calc->playername."'s front line, is higher than ".$outfit2_calc->playername."'s. That will certainly be an advantage";
+    } elseif($outfit1_calc->front_line['hp'] < $outfit2_calc->front_line['hp']) {
+        $battle_lines[102] = "the HP of ".$outfit2_calc->playername."'s front line, is higher than ".$outfit1_calc->playername."'s. That will certainly be an advantage";
+    } else {
+        $battle_lines[102] = "The frontline HP for both parties is incredably strong!";
+}
+
+//speed check
+if($outfit1_calc->back_line['speed'] > $outfit2_calc->back_line['speed']){
+    $battle_lines[103] = $outfit1_calc->playername." is flanking ".$outfit2_calc->playername."'s army. Clever moves";
+    } elseif($outfit1_calc->back_line['speed'] < $outfit2_calc->back_line['speed']) {
+        $battle_lines[103] = $outfit2_calc->playername." has some speedy units waiting in the back, what could this plan be?";
+    } else {
+        $battle_lines[103] = " ";
+}
+
+//intellect check
+if($outfit1_calc->center_line['intellect'] > $outfit2_calc->center_line['intellect']){
+    $battle_lines[104] = $outfit1_calc->playername." has more magically schooled units as part of the army core"; 
+    } elseif($outfit1_calc->center_line['intellect'] < $outfit2_calc->center_line['intellect']) {
+        $battle_lines[104] = $outfit2_calc->playername."'s units seem to be more geared towards magic attacks than ".$outfit1_calc->playername."'s is";
+    } else {
+        $battle_lines[104] = " ";
+}
+
+$battle_lines[105]=" ";
+$battle_lines[106]=" "; 
+$battle_lines[107]=" ";
+$battle_lines[108]=" ";
+$battle_lines[109]=" ";
+$battle_lines[110]=" ";
+
+
+$unit_line = random_int(0,count($outfit1)-1); 
+$battle_lines[111] = $outfit1[$unit_line]->name." bolsters the armies morale by singing the song of its faction.";
+
+$unit_line = random_int(0,count($outfit2)-1);
+$battle_lines[112] = "Has ".$outfit2[$unit_line]->name." been here before? It certainly looks like it!";
+
+$unit_line = random_int(0,count($outfit2)-1);
+$battle_lines[113] = $outfit2[$unit_line]->name." nearly died! But has managed to retreat.";
+
+$unit_line = random_int(0,count($outfit1)-1);
+$battle_lines[114] = $outfit1_calc->playername." and their ".$outfit1[$unit_line]->name." have planned a sneaky move together.";
+
+$unit_line = random_int(0,count($outfit2)-1);
+$battle_lines[115] = $outfit2_calc->playername." and their ".$outfit2[$unit_line]->name." have taken time to go over tactics together, and it shows";
+
+
 ?>

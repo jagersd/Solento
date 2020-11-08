@@ -51,9 +51,11 @@ class BattlesController extends Controller
         $field = DB::table('fields')->where('id',$battle_details->field_id)->first();
         battle::where('battlecode',$battlecode)->update(['closed'=>$complete_code]);
 
+        $flavour_line_index=range(101,115);
+        shuffle($flavour_line_index);
         include_once(app_path() . '/Providers/sequencecalc.php');
 
-        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs','complete_code','field','faction1','faction2'));
+        return view('battle/sequence', compact('battlecode','battle_details','username1','username2','outfit1','outfit2','outfit1_calc','outfit2_calc','battle_lines','battle_logs','complete_code','field','faction1','faction2','flavour_line_index'));
     }
 
     /**

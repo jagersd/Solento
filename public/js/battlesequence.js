@@ -30,16 +30,6 @@ for (let i=0; i < battleLogCount; i++){
     }
 }
 
-function showHide(element){
-    element.style.display= 'none';
-    element.style.transition= '2s';
-    if (element.style.display == 'none'){
-        setTimeout(function() {
-            element.style.display = 'block';
-        }, 5000);
-    }
-}
-
 /*
 View log button
 */
