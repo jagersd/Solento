@@ -1,79 +1,41 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## [Project-Solento](https://project-solento.stefandejager.nl)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<h5> Creator notes:</h5>
+This repository has been created to serve two main purposes. Primarily being a learning process in the world of web development and taking on the challenge of potentially creating something above my weight class. Both of course under the condition to continue as long as it is a fun way to spend free time on.
+As I lacked inspiration to build something that could potentially be 'useful', I thought of making a multi player web based game achieve these goals. 
 
-## About Laravel
+## Build on:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel Framework
+- MySQL back-end
+- Bootstrap 
+- (Vanilla) JavaScript
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## About the game:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h5> Idea:</h5>
+Combining a Trading Card Game with the relaxt style of Management games without forcing the player to spend loads (or any) money in order to have fun with.
+The meat of the game would be to configure and collect a group of units for a budget (in game currency) and when the player is happy with their setup, measure it agains other players which are also looking for a match at that time. That last part would conclude the multiplayer part of the game with a 30 second front end sequence providing information on what resulted in the played being the winner or loser in that match and either enjoy the spoils of coping with the loss at the end. 
 
-## Learning Laravel
+<h5> Execution:</h5>
+Currently (27 Jan 2021) is able to select a faction, collect/buy units and collect/buy items. The items can be equipped to the units in order to provide them with additional stats and other traits. 
+The player is not limited to the chosen faction. The faction choice does other things, like making units of that particular faction cheaper for that player, the selected faction can result in advantages/disadvantages on the randomly selected battle ground when a match is 'played'.
+Units have basic stats as well as special traits which are specific to that particular unit. 
+Before the player has the game start looking for a suitable match, they are able to specifically select which units to select for the battle and assign each unit to its possition on the battle field which plays an imporant factor in the final result. 
+When the player is ready to start a match, the game will look for an opponant through short polling. When a match is found, a sequence will be played exactly telling the player what is going on with some flavour text for good measure. The winner will always earn currency and has a percentage chance of collecting an item or even a unit. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h5> To do's:</h5>
+The the mood strikes and the time allows for it, I would like to have the following things done in order to reach an MVP state:
+- Lots of front-end modifications on basically all views in order to make it more intuitively useful and mobile friendly.
+- Provide the user with the possibility to sell items (units can already be sold, allthough not for as much as the buying rate)
+- Add a lot of units and items then tweak the stats in order to provide loads of options to create lots of 'decks'.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h5> Potential features: </h5>
+Over the last months I have had loads of ideas for additional features that would be fun to play with after reaching the MVP state. Here are some examples. 
+- Provide the player with the option to look for a match while playing around with their setup. Currently the player is locked in a 'looking for a match' screen. 
+- Add lots more tweaking options. Like more battle field possitions. 
+- Have a match play in multiple rounds. Making it slightly more simular to a TCG. 
+- Challenge specific other player. 
+- Trade units with other players. 
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
